@@ -1,7 +1,11 @@
 import React from "react";
 
+import Navbar from "../Editor/Components/Navbar";
+
 export default function Home() {
     return (
-        <div className="w-10 h-10 bg-red-500">Home</div>
+        <main className="bg-salmon w-full min-h-screen">
+            <Navbar />
+        </main>
     )
 }
