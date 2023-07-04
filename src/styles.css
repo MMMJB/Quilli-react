@@ -9,3 +9,12 @@
         list-style: none;
     }
 }
+
+@layer components {
+    .cta-mask {
+        mask: url("/utils/cta-mask.png");
+        -webkit-mask: url("/utils/cta-mask.png");
+        mask-size: 3000% 100%;
+        -webkit-mask-size: 3000% 100%;
+    }
+}

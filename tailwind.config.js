@@ -18,6 +18,20 @@ export default {
         "editor": "#404040",
         "editor-lgt": "#5F6366"
       },
+      keyframes: {
+        "cta": {
+          "from": {"-webkit-mask-position": "0 0", "mask-position": "0 0"},
+          "to": {"-webkit-mask-position": "100% 0", "mask-position": "100% 0"}
+        },
+        "cta-rev": {
+          "from": {"-webkit-mask-position": "100% 0", "mask-position": "100% 0"},
+          "to": {"-webkit-mask-position": "0 0", "mask-position": "0 0"}
+        }
+      },
+      animation: {
+        "cta": "cta 700ms steps(29) forwards",
+        "cta-rev": "cta-rev 700ms steps(29) forwards"
+      }
     },
     fontFamily: {
       "display": ["Gilda Display", "serif"],
@@ -25,7 +39,7 @@ export default {
       "script": ["Kaushan Script", "cursive"],
       "sans": ["Open Sans", "sans-serif"],
       "roboto": ["Roboto", "sans-serif"]
-    }
+    },
   },
   plugins: [],
 }
