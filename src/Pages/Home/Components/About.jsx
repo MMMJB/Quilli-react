@@ -4,7 +4,7 @@ import H3 from "./H3";
 
 export default function About() {
     return (<>
-        <section className="grid grid-cols-2 justify-items-center w-full max-w-[1350px]">
+        <section className="grid grid-cols-2 justify-items-center w-full max-w-[1500px]">
             <img src="images/paper_illustration.svg" alt="Illustration"></img>
             <div className="flex flex-col justify-center font-display text-home">
                 <h2 className="text-[42px]/[50.4px] tracking-tight">Spend less time switching tabs</h2>

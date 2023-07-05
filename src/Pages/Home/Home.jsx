@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import About from "./Components/About";
+import Services from "./Components/Services";
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
             <Navbar />
             <Hero />
             <About />
+            <Services />
         </div>
     )
 }

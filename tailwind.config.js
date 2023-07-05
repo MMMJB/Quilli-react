@@ -31,6 +31,10 @@ export default {
       animation: {
         "cta": "cta 700ms steps(29) forwards",
         "cta-rev": "cta-rev 700ms steps(29) forwards"
+      },
+      boxShadow: {
+        "default": "0px 2px 4px 2px rgba(60, 64, 67, .149)",
+        "secondary": "0px 1px 4px 0px rgba(60, 64, 67, .15)"
       }
     },
     fontFamily: {
