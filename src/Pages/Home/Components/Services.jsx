@@ -4,7 +4,7 @@ import servicesList from "../../../Utils/services-list";
 
 export default function Services() {
     return (<>
-        <section className="w-full max-w-7xl my-20">
+        <section className="w-full max-w-7xl mt-20">
             <ul className="w-full p-14 bg-white rounded-3xl shadow-secondary grid grid-cols-5 gap-[2vw]">
                 {servicesList.map((item, i) => {
                     return <>

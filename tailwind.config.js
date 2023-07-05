@@ -35,6 +35,16 @@ export default {
       boxShadow: {
         "default": "0px 2px 4px 2px rgba(60, 64, 67, .149)",
         "secondary": "0px 1px 4px 0px rgba(60, 64, 67, .15)"
+      },
+      fontSize: {
+        "h1": "3.375rem",
+        "h2": "2.625rem",
+        "h3": "1.125rem"
+      },
+      lineHeight: {
+        "h1": "64.8px",
+        "h2": "50.4px",
+        "h3": "27px"
       }
     },
     fontFamily: {

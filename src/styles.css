@@ -4,9 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    li {
-        list-style: none;
+@layer base {
+    h1, h2, h3 {
+        font-family: theme("fontFamily.display");
+    }
+
+    h1 {
+        font-size: theme("fontSize.h1");
+        line-height: theme("lineHeight.h1");
+    }
+
+    h2 {
+        font-size: theme("fontSize.h2");
+        line-height: theme("lineHeight.h2");
+    }
+
+    h3 {
+        font-size: theme("fontSize.h3");
+        line-height: theme("lineHeight.h3");
     }
 }
 
@@ -16,5 +31,11 @@
         -webkit-mask: url("/utils/cta-mask.png");
         mask-size: 3000% 100%;
         -webkit-mask-size: 3000% 100%;
+    }
+}
+
+@layer utilities {
+    li {
+        list-style: none;
     }
 }

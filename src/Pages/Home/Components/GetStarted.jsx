@@ -1,10 +1,21 @@
 import React from "react";
 
+import GetStartedBtn from "./GetStartedBtn";
+
 export default function GetStarted() {
     return (<>
-        <div className="text-base/[26px] text-white font-sans">
-            <span className="absolute rounded-lg px-6 py-2 bg-brand-dark shadow-[0px_24px_60px_rgba(0,0,0,.01),0px_34px_20px_rgba(0,0,0,.05),0px_15px_15px_rgba(0,0,0,.09),0px_4px_8px_rgba(0,0,0,.1)]">Get Started</span>
-            <button className="bg-brand cta-mask rounded-lg px-6 py-2 animate-cta-rev hover:animate-cta">Get Started</button>
-        </div>
+        <section className="w-full my-20 grid place-items-center">
+            <div className="flex flex-col justify-center items-center gap-4 relative">
+                <svg className=" h-[125%] absolute" viewBox="0 0 299 208" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M297 14.0991C297 21.0039 291.403 26.5991 284.499 26.5991C277.597 26.5991 272 21.0039 272 14.0991C272 7.19429 277.597 1.59912 284.499 1.59912C291.403 1.59912 297 7.19429 297 14.0991Z" stroke="#FEF3ED" strokeWidth="2.57733" strokeMiterlimit="10"/>
+                    <path d="M98 199.099C98 203.242 94.6418 206.599 90.4993 206.599C86.3582 206.599 83 203.242 83 199.099C83 194.956 86.3582 191.599 90.4993 191.599C94.6418 191.599 98 194.956 98 199.099Z" stroke="#FEF3ED" strokeWidth="2.57733" strokeMiterlimit="10"/>
+                    <circle cx="179.5" cy="106.099" r="71.5" fill="#FEF3ED"/>
+                    <circle cx="33" cy="59.5991" r="33" fill="#FEF3ED"/>
+                </svg>
+                <h2 className="text-home z-10">Ready to start creating?</h2>
+                <GetStartedBtn />
+                <img className="relative bottom-3 translate-x-1/2 z-10" src="/images/callout.svg" alt="It's free!"></img>
+            </div>
+        </section>
     </>)
 }

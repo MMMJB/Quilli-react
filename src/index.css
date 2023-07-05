@@ -424,6 +424,25 @@ video {
   display: none;
 }
 
+h1, h2, h3 {
+  font-family: Gilda Display, serif;
+}
+
+h1 {
+  font-size: 3.375rem;
+  line-height: 64.8px;
+}
+
+h2 {
+  font-size: 2.625rem;
+  line-height: 50.4px;
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 27px;
+}
+
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -543,6 +562,34 @@ video {
   top: 0.75rem;
 }
 
+.left-1\/2{
+  left: 50%;
+}
+
+.left-1\/4{
+  left: 25%;
+}
+
+.bottom-1{
+  bottom: 0.25rem;
+}
+
+.top-0{
+  top: 0px;
+}
+
+.bottom-3{
+  bottom: 0.75rem;
+}
+
+.z-10{
+  z-index: 10;
+}
+
+.-z-10{
+  z-index: -10;
+}
+
 .float-right{
   float: right;
 }
@@ -554,6 +601,10 @@ video {
 
 .ml-3{
   margin-left: 0.75rem;
+}
+
+.mt-20{
+  margin-top: 5rem;
 }
 
 .mt-4{
@@ -588,6 +639,18 @@ video {
   height: 16rem;
 }
 
+.h-full{
+  height: 100%;
+}
+
+.h-\[125\%\]{
+  height: 125%;
+}
+
+.h-\[150\%\]{
+  height: 150%;
+}
+
 .max-h-\[80vh\]{
   max-height: 80vh;
 }
@@ -604,10 +667,6 @@ video {
   width: 8rem;
 }
 
-.w-48{
-  width: 12rem;
-}
-
 .w-full{
   width: 100%;
 }
@@ -620,16 +679,17 @@ video {
   max-width: 1500px;
 }
 
+.max-w-\[34rem\]{
+  max-width: 34rem;
+}
+
 .max-w-xl{
   max-width: 36rem;
 }
 
-.max-w-lg{
-  max-width: 32rem;
-}
-
-.max-w-\[34rem\]{
-  max-width: 34rem;
+.translate-x-1\/2{
+  --tw-translate-x: 50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @keyframes cta-rev{
@@ -656,16 +716,16 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-\[repeat\(auto-fit\2c 12rem\)\]{
-  grid-template-columns: repeat(auto-fit,12rem);
-}
-
 .grid-cols-5{
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .flex-col{
   flex-direction: column;
+}
+
+.place-items-center{
+  place-items: center;
 }
 
 .items-center{
@@ -680,20 +740,16 @@ video {
   justify-items: center;
 }
 
-.gap-14{
-  gap: 3.5rem;
-}
-
 .gap-3{
   gap: 0.75rem;
 }
 
-.gap-6{
-  gap: 1.5rem;
+.gap-4{
+  gap: 1rem;
 }
 
-.gap-12{
-  gap: 3rem;
+.gap-6{
+  gap: 1.5rem;
 }
 
 .gap-\[2vw\]{
@@ -780,10 +836,6 @@ video {
   text-align: center;
 }
 
-.font-display{
-  font-family: Gilda Display, serif;
-}
-
 .font-sans{
   font-family: Open Sans, sans-serif;
 }
@@ -792,24 +844,9 @@ video {
   font-family: Kaushan Script, cursive;
 }
 
-.text-\[42px\]\/\[50\.4px\]{
-  font-size: 42px;
-  line-height: 50.4px;
-}
-
-.text-\[54px\]\/\[64\.8px\]{
-  font-size: 54px;
-  line-height: 64.8px;
-}
-
 .text-base\/\[26px\]{
   font-size: 1rem;
   line-height: 26px;
-}
-
-.text-lg\/\[27px\]{
-  font-size: 1.125rem;
-  line-height: 27px;
 }
 
 .text-sm{
