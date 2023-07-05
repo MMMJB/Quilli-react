@@ -9,7 +9,7 @@ export default [
     },
     {
         icon: "import_contacts",
-        text: "Search for definitions and synonyms for any word without having to switch browser tabs."
+        text: "Search for definitions and synonyms for any word directly within the app."
     },
     {
         icon: "numbers",
@@ -17,6 +17,6 @@ export default [
     },
     {
         icon: "check",
-        text: "Enjoy the same features of other high-end text editors including colors, autocorrect, and more."
+        text: "Enjoy the features of other high-end text editors for a familiar experience."
     }
 ]
