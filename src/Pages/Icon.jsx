@@ -17,7 +17,7 @@ export default function Icon({icon, size}) {
 
         setBackgroundSize([bw * scalar, bh * scalar]);
         setBackgroundPosition([-mx, -my * 1.003]);
-    }, size)
+    }, [size])
 
     return <span className="inline-block" style={{
         background: "url(/images/icon-spritesheet.svg)",

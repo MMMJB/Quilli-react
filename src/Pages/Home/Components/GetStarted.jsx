@@ -4,7 +4,7 @@ import GetStartedBtn from "./GetStartedBtn";
 
 export default function GetStarted() {
     return (<>
-        <section className="w-full my-20 grid place-items-center">
+        <section id="GETSTARTED" className="w-full my-24 grid place-items-center">
             <div className="flex flex-col justify-center items-center gap-4 relative">
                 <svg className=" h-[125%] absolute" viewBox="0 0 299 208" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M297 14.0991C297 21.0039 291.403 26.5991 284.499 26.5991C277.597 26.5991 272 21.0039 272 14.0991C272 7.19429 277.597 1.59912 284.499 1.59912C291.403 1.59912 297 7.19429 297 14.0991Z" stroke="#FEF3ED" strokeWidth="2.57733" strokeMiterlimit="10"/>

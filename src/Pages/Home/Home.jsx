@@ -9,7 +9,7 @@ import Footer from "./Components/Footer";
 
 export default function Home() {
     return (
-        <div className="bg-salmon w-full min-h-screen flex flex-col items-center">
+        <div id="HOME" className="bg-salmon w-full min-h-screen flex flex-col items-center">
             <Navbar />
             <Hero />
             <About />
