@@ -1,17 +1,28 @@
 import React from "react";
+import { AuthProvider } from "./Contexts/AuthContext";
+
 import Home from "./Pages/Home/Home";
+import Signup from "./Pages/Login/Signup";
+import Login from "./Pages/Login/Login";
+import Documents from "./Pages/Documents/Documents";
 import Editor from "./Pages/Editor/Editor";
 import NotFound from "./Pages/404/NotFound";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
     return (<>
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/app" element={<Editor/>} />
-                <Route path="*" element={<NotFound/>} />
-            </Routes>
-        </Router>
+        <AuthProvider>
+            <Router>
+                <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/documents" element={<Documents />} />
+                        <Route path="/documents/:id" element={<Editor />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="*" element={<NotFound/>} />
+                </Routes>
+            </Router>
+        </AuthProvider>
     </>)
 }

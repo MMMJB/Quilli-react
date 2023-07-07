@@ -5,21 +5,21 @@
 @tailwind utilities;
 
 @layer base {
-    h1, h2, h3 {
+    #HOME h1, #HOME h2, #HOME h3 {
         font-family: theme("fontFamily.display");
     }
 
-    h1 {
+    #HOME h1 {
         font-size: theme("fontSize.h1");
         line-height: theme("lineHeight.h1");
     }
 
-    h2 {
+    #HOME h2 {
         font-size: theme("fontSize.h2");
         line-height: theme("lineHeight.h2");
     }
 
-    h3 {
+    #HOME h3 {
         font-size: theme("fontSize.h3");
         line-height: theme("lineHeight.h3");
     }
