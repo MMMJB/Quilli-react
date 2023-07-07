@@ -596,6 +596,26 @@ video {
   top: 0.75rem;
 }
 
+.top-6{
+  top: 1.5rem;
+}
+
+.right-0{
+  right: 0px;
+}
+
+.top-full{
+  top: 100%;
+}
+
+.top-7{
+  top: 1.75rem;
+}
+
+.top-8{
+  top: 2rem;
+}
+
 .z-0{
   z-index: 0;
 }
@@ -657,6 +677,10 @@ video {
   display: grid;
 }
 
+.aspect-square{
+  aspect-ratio: 1 / 1;
+}
+
 .h-10{
   height: 2.5rem;
 }
@@ -669,6 +693,10 @@ video {
   height: 16rem;
 }
 
+.h-7{
+  height: 1.75rem;
+}
+
 .h-\[125\%\]{
   height: 125%;
 }
@@ -677,12 +705,28 @@ video {
   height: 100vh;
 }
 
+.h-full{
+  height: 100%;
+}
+
+.h-20{
+  height: 5rem;
+}
+
+.max-h-\[40vh\]{
+  max-height: 40vh;
+}
+
 .max-h-\[80vh\]{
   max-height: 80vh;
 }
 
 .min-h-screen{
   min-height: 100vh;
+}
+
+.w-1\/2{
+  width: 50%;
 }
 
 .w-10{
@@ -701,6 +745,10 @@ video {
   width: 100%;
 }
 
+.w-20{
+  width: 5rem;
+}
+
 .max-w-7xl{
   max-width: 80rem;
 }
@@ -713,8 +761,16 @@ video {
   max-width: 34rem;
 }
 
+.max-w-\[570px\]{
+  max-width: 570px;
+}
+
 .max-w-xl{
   max-width: 36rem;
+}
+
+.flex-grow{
+  flex-grow: 1;
 }
 
 .-translate-x-1\/2{
@@ -750,6 +806,12 @@ video {
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.appearance-none{
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .grid-cols-2{
@@ -816,12 +878,20 @@ video {
   border-radius: 4px;
 }
 
+.rounded-full{
+  border-radius: 9999px;
+}
+
 .rounded-lg{
   border-radius: 0.5rem;
 }
 
 .rounded-md{
   border-radius: 0.375rem;
+}
+
+.rounded-xl{
+  border-radius: 0.75rem;
 }
 
 .border-2{
@@ -835,6 +905,10 @@ video {
 .border-gray-border{
   --tw-border-opacity: 1;
   border-color: rgb(218 220 224 / var(--tw-border-opacity));
+}
+
+.border-home-lgt\/50{
+  border-color: rgb(178 168 163 / 0.5);
 }
 
 .bg-blue-500{
@@ -852,6 +926,11 @@ video {
   background-color: rgb(24 90 157 / var(--tw-bg-opacity));
 }
 
+.bg-red-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
 .bg-salmon{
   --tw-bg-opacity: 1;
   background-color: rgb(254 236 226 / var(--tw-bg-opacity));
@@ -862,13 +941,33 @@ video {
   background-color: rgb(254 243 237 / var(--tw-bg-opacity));
 }
 
+.bg-transparent{
+  background-color: transparent;
+}
+
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-white\/10{
+  background-color: rgb(255 255 255 / 0.1);
+}
+
 .bg-white\/50{
   background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-\[url\(\'https\:\/\/picsum\.photos\/100\/100\'\)\]{
+  background-image: url('https://picsum.photos/100/100');
+}
+
+.bg-cover{
+  background-size: cover;
+}
+
+.bg-center{
+  background-position: center;
 }
 
 .p-14{
@@ -886,6 +985,11 @@ video {
 .px-12{
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-6{
@@ -982,6 +1086,11 @@ video {
   color: rgb(95 99 102 / var(--tw-text-opacity));
 }
 
+.text-green-500{
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
 .text-home{
   --tw-text-opacity: 1;
   color: rgb(102 94 90 / var(--tw-text-opacity));
@@ -1004,11 +1113,6 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-green-500{
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -1039,6 +1143,10 @@ li {
 
 a:hover {
   text-decoration: underline;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -1078,6 +1186,16 @@ body::-webkit-scrollbar-corner {
 
 body::-webkit-scrollbar-track {
   background-color: #FEECE2 !important;
+}
+
+.placeholder\:text-home-lgt::-moz-placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(178 168 163 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-home-lgt::placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(178 168 163 / var(--tw-text-opacity));
 }
 
 @keyframes cta{
@@ -1125,6 +1243,14 @@ body::-webkit-scrollbar-track {
 
 .focus-visible\:placeholder\:text-editor-lgt\/50:focus-visible::placeholder{
   color: rgb(95 99 102 / 0.5);
+}
+
+.focus-visible\:placeholder\:text-home-lgt\/50:focus-visible::-moz-placeholder{
+  color: rgb(178 168 163 / 0.5);
+}
+
+.focus-visible\:placeholder\:text-home-lgt\/50:focus-visible::placeholder{
+  color: rgb(178 168 163 / 0.5);
 }
 
 .disabled\:bg-brand\/50:disabled{

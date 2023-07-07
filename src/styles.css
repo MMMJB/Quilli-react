@@ -64,6 +64,10 @@
     a:hover {
         text-decoration: underline;
     }
+
+    input[type="search"]::-webkit-search-cancel-button {
+        display: none;
+    }
 }
 
 ::-webkit-scrollbar {

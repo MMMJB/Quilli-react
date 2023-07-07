@@ -53,11 +53,12 @@ export default function User() {
     }
   
     return (<>
-        <div className="p-8 rounded-lg border-2 border-gray-border flex flex-col items-center justify-center gap-4">
+        <div className="p-8 rounded-lg bg-white border-2 border-gray-border flex flex-col items-center justify-center gap-4">
             {
                 !updatingProfile ? <>
                     <h2 className="font-sans text-2xl">Profile</h2>
                     <span><strong>Email:</strong> {currentUser.email}</span>
+                    <span><strong>Name:</strong> {currentUser.displayName}</span>
                     {error && <div className="text-red-500 mt-4 text-sm font-roboto">{error}</div>}
                     <button onClick={_ => setUpdatingProfile(true)} className="font-sans hover:underline">Update Profile</button>
                     <button onClick={handleLogout} className="font-sans text-brand-dark hover:underline">Log Out</button>
