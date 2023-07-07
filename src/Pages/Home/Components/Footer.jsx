@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import Icon from "../../Icon";
+import Icon from "../../../Components/Icon"
 
 export default function Footer() {
     return (<>

@@ -645,6 +645,10 @@ video {
   margin-top: 2rem;
 }
 
+.mt-2{
+  margin-top: 0.5rem;
+}
+
 .inline-block{
   display: inline-block;
 }
@@ -677,6 +681,10 @@ video {
   height: 100vh;
 }
 
+.h-28{
+  height: 7rem;
+}
+
 .max-h-\[80vh\]{
   max-height: 80vh;
 }
@@ -699,6 +707,10 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-28{
+  width: 7rem;
 }
 
 .max-w-7xl{
@@ -826,6 +838,10 @@ video {
 
 .border-\[1px\]{
   border-width: 1px;
+}
+
+.border-2{
+  border-width: 2px;
 }
 
 .border-gray-border{
@@ -1085,6 +1101,10 @@ body::-webkit-scrollbar-track {
 .hover\:text-home:hover{
   --tw-text-opacity: 1;
   color: rgb(102 94 90 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover{
+  text-decoration-line: underline;
 }
 
 .focus-visible\:border-2:focus-visible{

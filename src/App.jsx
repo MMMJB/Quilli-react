@@ -9,18 +9,27 @@ import Editor from "./Pages/Editor/Editor";
 import NotFound from "./Pages/404/NotFound";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./Components/PrivateRoute";
 
 export default function App() {
     return (<>
         <AuthProvider>
             <Router>
                 <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/documents" element={<Documents />} />
-                        <Route path="/documents/:id" element={<Editor />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="*" element={<NotFound/>} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="*" element={<NotFound/>} />
+                    <Route path="/documents" element={
+                        <PrivateRoute>
+                            <Documents />
+                        </PrivateRoute>
+                    } />
+                    <Route path="/documents/:id" element={
+                        <PrivateRoute>
+                            <Editor />
+                        </PrivateRoute>
+                    } />
                 </Routes>
             </Router>
         </AuthProvider>
