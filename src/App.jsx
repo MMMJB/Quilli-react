@@ -4,6 +4,7 @@ import { AuthProvider } from "./Contexts/AuthContext";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
 import Login from "./Pages/Login/Login";
+import ForgotPassword from "./Pages/Login/ForgotPassword";
 import Documents from "./Pages/Documents/Documents";
 import Editor from "./Pages/Editor/Editor";
 import NotFound from "./Pages/404/NotFound";
@@ -19,6 +20,7 @@ export default function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/password-reset" element={<ForgotPassword />} />
                     <Route path="*" element={<NotFound/>} />
                     <Route path="/documents" element={
                         <PrivateRoute>
