@@ -990,11 +990,6 @@ video {
   background-color: rgb(24 90 157 / var(--tw-bg-opacity));
 }
 
-.bg-red-500{
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
-
 .bg-salmon{
   --tw-bg-opacity: 1;
   background-color: rgb(254 236 226 / var(--tw-bg-opacity));

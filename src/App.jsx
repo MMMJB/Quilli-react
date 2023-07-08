@@ -9,8 +9,10 @@ import Documents from "./Pages/Documents/Documents"
 import Editor from "./Pages/Editor/Editor"
 import NotFound from "./Pages/404/NotFound"
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import PrivateRoute from "./Components/PrivateRoute"
+
+import { v4 as uuidV4 } from "uuid"
 
 export default function App() {
     return (
@@ -27,10 +29,13 @@ export default function App() {
                             <Documents />
                         </PrivateRoute>
                     } />
+                    <Route path="/new" element={
+                        <Navigate to={`/documents/${uuidV4()}`} />
+                    } />
                     <Route path="/documents/:id" element={
-                        <PrivateRoute>
+                        // <PrivateRoute>
                             <Editor />
-                        </PrivateRoute>
+                        // </PrivateRoute>
                     } />
                 </Routes>
             </Router>
