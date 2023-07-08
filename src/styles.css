@@ -23,6 +23,10 @@
         font-size: theme("fontSize.h3");
         line-height: theme("lineHeight.h3");
     }
+
+    *:has(#LOADER:not(.hidden)) {
+        overflow: hidden;
+    }
 }
 
 @layer components {

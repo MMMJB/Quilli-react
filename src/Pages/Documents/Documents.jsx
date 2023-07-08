@@ -60,7 +60,7 @@ export default function Documents() {
                     }
                 </ul>
                 <img src="/images/corner.svg" alt="" className="fixed bottom-0 right-0 h-40" />
-                <button className="fixed w-16 h-16 bg-brand rounded-full bottom-6 right-6 text-4xl/[1px] text-white grid place-items-center">+</button>
+                <button className="fixed w-16 h-16 bg-brand rounded-full bottom-6 right-6 text-4xl/[1px] text-white grid place-items-center shadow-lg hover:bg-brand-dark transition-colors">+</button>
             </main>
         </div>
     )
