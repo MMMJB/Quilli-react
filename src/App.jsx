@@ -6,13 +6,12 @@ import Signup from "./Pages/Login/Signup"
 import Login from "./Pages/Login/Login"
 import ForgotPassword from "./Pages/Login/ForgotPassword"
 import Documents from "./Pages/Documents/Documents"
+import NewDoc from "./Pages/Documents/NewDoc"
 import Editor from "./Pages/Editor/Editor"
 import NotFound from "./Pages/404/NotFound"
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Navigate, generatePath } from "react-router-dom"
 import PrivateRoute from "./Components/PrivateRoute"
-
-import { v4 as uuidV4 } from "uuid"
 
 export default function App() {
     return (
@@ -30,12 +29,14 @@ export default function App() {
                         </PrivateRoute>
                     } />
                     <Route path="/new" element={
-                        <Navigate to={`/documents/${uuidV4()}`} />
+                        <PrivateRoute>
+                            <NewDoc />
+                        </PrivateRoute>
                     } />
                     <Route path="/documents/:id" element={
-                        // <PrivateRoute>
+                        <PrivateRoute>
                             <Editor />
-                        // </PrivateRoute>
+                        </PrivateRoute>
                     } />
                 </Routes>
             </Router>
