@@ -15,10 +15,12 @@ export default function NewDoc() {
 
     const createNewDoc = id => {
         const collectionRef = collection(database, "users", id, "docsData");
+        const emptyDelta = [{ insert: "\n" }];
         
         return addDoc(collectionRef, {
-            title: "some title",
-            owner: id
+            title: "New Document",
+            owner: id,
+            content: emptyDelta 
         })
     }
 

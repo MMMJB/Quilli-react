@@ -777,6 +777,11 @@ video {
   width: 100%;
 }
 
+.w-max{
+  width: -moz-max-content;
+  width: max-content;
+}
+
 .w-screen{
   width: 100vw;
 }
@@ -1180,6 +1185,10 @@ video {
   color: rgb(95 99 102 / var(--tw-text-opacity));
 }
 
+.text-editor-lgt\/25{
+  color: rgb(95 99 102 / 0.25);
+}
+
 .text-green-500{
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
@@ -1207,6 +1216,10 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-editor-lgt\/50{
+  color: rgb(95 99 102 / 0.5);
 }
 
 .underline{

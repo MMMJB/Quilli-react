@@ -1,45 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import AccountButton from '../../Components/AccountButton'
 import Doc from './Components/Doc'
 
-const docs = [
-    {
-        title: "The Raven",
-        type: "Ballad",
-        meter: "Trochaic Octameter"
-    },
-    {
-        title: "The Road Not Taken",
-        type: "Sonnet",
-        meter: "Iambic Pentameter"
-    },
-    {
-        title: "Cotton Eye Joe",
-        type: "Song",
-        meter: undefined
-    },
-    {
-        title: "New Play 1",
-        type: "Screenplay",
-        meter: undefined
-    },
-    {
-        title: "Cotton Eye Joe",
-        type: "Song",
-        meter: undefined
-    },
-    {
-        title: "some obscenely long poem name that no one in their right mind would ever write",
-        type: "Song",
-        meter: undefined
-    },
-]
+import { useAuth } from '../../Contexts/AuthContext'
+
+import { collection, getDocs } from 'firebase/firestore'
+import { database } from '../../Utils/firebase-config'
 
 export default function Documents() {
+    const [docs, setDocs] = useState([]);
+
+    const { currentUser } = useAuth();
+
     const navigate = useNavigate();
+
+    useEffect(_ => {
+        const getAllDocuments = async _ => {
+            const collectionRef = collection(database, "users", currentUser.uid, "docsData");
+    
+            const querySnapshot = await getDocs(collectionRef);
+            querySnapshot.forEach(doc => {
+                setDocs(p => [...p, {
+                    id: doc.id,
+                    title: doc.data().title
+                }])
+            })
+        }
+
+        getAllDocuments();
+
+        return _ => setDocs([]);
+    }, [currentUser])
 
     const searchDocuments = e => {
         e.preventDefault();
@@ -56,11 +50,15 @@ export default function Documents() {
                 <img className="w-full max-h-[40vh]" src="/images/quilli_illustration.svg" />
             </header>
             <main className="relative flex justify-center py-8 px-16 w-full flex-grow">
-                <ul className="grid grid-cols-4 gap-8">
+                <ul className="relative grid grid-cols-4 gap-8">
                     {
-                        docs.map((doc, i) => {
-                            return <Doc title={doc.title} type={doc.type} meter={doc.meter} key={i} />
-                        })
+                        docs.length > 0 ? 
+                            docs.map((doc, i) => {
+                                // return <Doc title={doc.title} type={doc.type} meter={doc.meter} key={i} />
+                                return <Doc onClick={_ => navigate(`/documents/${doc.id}`)} title={doc.title} key={doc.id} />
+                            })
+                        :
+                            <span className="absolute left-1/2 w-max -translate-x-1/2 font-roboto text-editor-lgt/50">You haven't created any documents yet.</span>
                     }
                 </ul>
                 <img src="/images/corner.svg" alt="" className="fixed bottom-0 right-0 h-40" />
