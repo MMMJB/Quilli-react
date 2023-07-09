@@ -753,10 +753,6 @@ video {
   width: 50%;
 }
 
-.w-10{
-  width: 2.5rem;
-}
-
 .w-16{
   width: 4rem;
 }
@@ -973,11 +969,6 @@ video {
 
 .border-home-lgt\/50{
   border-color: rgb(178 168 163 / 0.5);
-}
-
-.bg-blue-500{
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 
 .bg-brand{
@@ -1317,7 +1308,7 @@ body::-webkit-scrollbar-corner {
   background-color: transparent;
 }
 
-body::-webkit-scrollbar-track {
+body:has(#HOME)::-webkit-scrollbar-track {
   background-color: #FEECE2 !important;
 }
 

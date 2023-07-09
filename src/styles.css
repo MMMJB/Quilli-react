@@ -113,6 +113,6 @@ body::-webkit-scrollbar-corner {
     background-color: transparent;
 }
 
-body::-webkit-scrollbar-track {
+body:has(#HOME)::-webkit-scrollbar-track {
     background-color: theme("accentColor.salmon") !important;
 }

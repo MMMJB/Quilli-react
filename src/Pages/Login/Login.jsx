@@ -26,8 +26,11 @@ export default function Login() {
             setLoading(true);
 
             await login(emailRef.current.value, passwordRef.current.value);
-        
-            navigate("/documents");
+
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get("redirect");
+
+            navigate(`/documents${redirect ? `/${redirect}` : ""}`);
         } catch(err) {
             const e = err.message;
             const msg = e.substring(e.indexOf(":") + 2, e.indexOf("("));
