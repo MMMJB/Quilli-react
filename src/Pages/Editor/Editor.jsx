@@ -14,6 +14,7 @@ export default function Editor() {
 
     useEffect(_ => {
         const s = io("http://192.168.1.17:3001");
+        // const s = io("http://localhost:3001");
         setSocket(s);
 
         return _ => s.disconnect();
