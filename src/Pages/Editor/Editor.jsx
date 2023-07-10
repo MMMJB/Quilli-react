@@ -24,14 +24,19 @@ export default function Editor() {
 
     const Delta = Quill.import("delta");
 
-    const saveDocument = async data => {
-        if (!quill || lastSavedContent.current == quill.getText()) return;
+    const contentsHaveChanged = _ => lastSavedContent.current !== quill.getText();
+
+    const saveDocument = async _ => {
+        const data = quill?.getContents().ops;
+
+        if (!quill || !contentsHaveChanged()) return;
         
         await updateDoc(docRef.current, {
             content: data
         })
 
         lastSavedContent.current = quill.getText();
+        console.log("Successfully saved document.");
     }
 
     useEffect(_ => {
@@ -41,6 +46,16 @@ export default function Editor() {
 
         return _ => s.disconnect();
     }, []);
+
+    useEffect(_ => {
+        if (!socket || !quill) return;
+
+        window.onbeforeunload = _ => {
+            if (contentsHaveChanged()) return "Some of your edits may not have been saved. Are you sure you would like to exit?";
+        }
+
+        return _ => window.onbeforeunload = null;
+    }, [socket, quill])
 
     useEffect(_ => {
         if (!socket || !quill) return;
@@ -68,11 +83,11 @@ export default function Editor() {
     useEffect(_ => {
         if (!socket || !quill) return;
 
-        // const interval = setInterval(_ => {
-        //     saveDocument();
-        // }, SAVE_INTERVAL_MS);
+        const interval = setInterval(_ => {
+            saveDocument();
+        }, SAVE_INTERVAL_MS);
 
-        // return _ => clearInterval(interval);
+        return _ => clearInterval(interval);
     }, [socket, quill])
 
     useEffect(_ => {
@@ -80,8 +95,6 @@ export default function Editor() {
 
         const handler = (delta, oldDelta, source) => {
             if (source !== "user") return;
-
-            saveDocument(quill.getContents().ops);
 
             socket.emit("send-changes", delta);
         }

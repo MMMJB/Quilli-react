@@ -58,6 +58,14 @@
         top: 0;
         background-color: theme("accentColor.salmon-lgt");
     }
+
+    #PREVIEW p {
+        font-size: 13px;
+    }
+
+    #PREVIEW h1 {
+        font-size: 26px;
+    }
 }
 
 @layer utilities {

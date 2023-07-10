@@ -25,7 +25,8 @@ export default function Documents() {
             querySnapshot.forEach(doc => {
                 setDocs(p => [...p, {
                     id: doc.id,
-                    title: doc.data().title
+                    title: doc.data().title,
+                    content: doc.data().content
                 }])
             })
         }
@@ -55,7 +56,7 @@ export default function Documents() {
                         docs.length > 0 ? 
                             docs.map((doc, i) => {
                                 // return <Doc title={doc.title} type={doc.type} meter={doc.meter} key={i} />
-                                return <Doc onClick={_ => navigate(`/documents/${doc.id}`)} title={doc.title} key={doc.id} />
+                                return <Doc onClick={_ => navigate(`/documents/${doc.id}`)} data={{title: doc.title, content: doc.content}} key={doc.id} />
                             })
                         :
                             <span className="absolute left-1/2 w-max -translate-x-1/2 font-roboto text-editor-lgt/50">You haven't created any documents yet.</span>

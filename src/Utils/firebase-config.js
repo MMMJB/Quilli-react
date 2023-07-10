@@ -27,4 +27,4 @@ const app = initializeApp(conf);
 export default app;
 export const database = getFirestore(app);
 
-export const SAVE_INTERVAL_MS = 300000;
+export const SAVE_INTERVAL_MS = 10000;
