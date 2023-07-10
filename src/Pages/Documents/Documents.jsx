@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import AccountButton from '../../Components/AccountButton'
+import AccountButton from '../../Components/Account/AccountButton'
 import Doc from './Components/Doc'
 
 import { useAuth } from '../../Contexts/AuthContext'

@@ -59,12 +59,24 @@
         background-color: theme("accentColor.salmon-lgt");
     }
 
+    #PREVIEW * {
+        cursor: pointer;
+    }
+
     #PREVIEW p {
         font-size: 13px;
     }
 
     #PREVIEW h1 {
         font-size: 26px;
+    }
+
+    #PREVIEW h2 {
+        font-size: 19.5px;
+    }
+
+    #PREVIEW h3 {
+        font-size: 15.21px;
     }
 }
 

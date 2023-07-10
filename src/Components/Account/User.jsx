@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useAuth } from "../Contexts/AuthContext"
 import { useNavigate } from "react-router-dom"
+
+import { useAuth } from "../../Contexts/AuthContext"
+
+import UserMenuButton from './UserMenuButton'
+import AccountProfilePicture from './AccountProfilePicture'
 
 const inputStyles = "max-w-[12rem] font-roboto text-editor-lgt text-base rounded-md px-6 py-3 border-gray-border border-[1px] focus-visible:outline-none focus-visible:border-brand focus-visible:border-2 focus-visible:placeholder:text-editor-lgt/50";
 
@@ -15,6 +19,30 @@ export default function User() {
     const { currentUser, logout, changePassword } = useAuth();
     
     const navigate = useNavigate(); 
+
+    const menuButtons = [
+        {
+            icon: "home",
+            text: "Documents",
+            func: _ => {
+                navigate("/documents")
+            }
+        },
+        {
+            icon: "settings",
+            text: "Profile Settings",
+            func: _ => {
+                setUpdatingProfile(true);
+            }
+        },
+        {
+            icon: "palette",
+            text: "Appearance",
+            func: _ => {
+                // Dark mode, accessibility, etc
+            }
+        }
+    ]
 
     const handleLogout = async _ => {
         setError("");
@@ -61,14 +89,25 @@ export default function User() {
     }, [updatingProfile])
   
     return (<>
-        <div className="p-8 w-64 rounded-lg bg-white border-[1px] shadow-sm border-home-lgt/50 flex flex-col items-center justify-center gap-4">
+        <div className="w-64 rounded-xl bg-gray-300 overflow-hidden shadow-lg">
             {
                 !updatingProfile ? <>
-                    <h2 className="font-sans text-2xl">Michael Beck</h2>
-                    <span><strong>Email:</strong> {currentUser.email}</span>
+                    <div className="w-full bg-white bg-[url('/images/corner_waves.svg')] bg-right-bottom bg-cover flex font-sans rounded-xl relative z-10 shadow-secondary">
+                        <AccountProfilePicture />
+                        <div className="flex flex-col my-auto">
+                            <span className="text-white text-base">Michael Beck</span>
+                            <span className="text-white/50 text-xs">{currentUser.email}</span>
+                        </div>
+                    </div>
+                    <ul className="w-full bg-white flex flex-col font-roboto border-gray-300 border-4 relative bottom-2 rounded-b-xl">
+                        {
+                            menuButtons.map((btn, i) => {
+                                return <UserMenuButton onClick={btn.func} text={btn.text} icon={btn.icon} key={i} />
+                            })
+                        }
+                    </ul>
+                    <button onClick={handleLogout} className="relative left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-editor-lgt hover:text-editor transition-colors">Sign Out</button>
                     {error && <div className="text-red-500 mt-4 text-sm font-roboto">{error}</div>}
-                    <button onClick={_ => setUpdatingProfile(true)} className="font-sans hover:underline">Update Profile</button>
-                    <button onClick={handleLogout} className="font-sans text-brand-dark hover:underline">Log Out</button>
                 </> : <>
                     <form onSubmit={updateAccount} className="flex flex-col gap-8 items-center">
                         <input className={inputStyles} type="password" ref={passwordRef} placeholder="New Password" required />
