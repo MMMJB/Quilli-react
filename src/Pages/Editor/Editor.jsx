@@ -1,135 +1,162 @@
-import React, { useRef, useState, useEffect, useCallback } from "react"
+import React, { useRef, useState, useEffect, useCallback } from "react";
 
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 
-import { io } from "socket.io-client"
-import Quill from "quill"
-import "quill/dist/quill.snow.css"
+import { io } from "socket.io-client";
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
 
-import { doc, getDoc, updateDoc } from "firebase/firestore"
-import { database, SAVE_INTERVAL_MS } from "../../Utils/firebase-config"
-import { useAuth } from "../../Contexts/AuthContext"
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { database, SAVE_INTERVAL_MS } from "../../Utils/firebase-config";
+import { useAuth } from "../../Contexts/AuthContext";
 
 export default function Editor() {
-    const docRef = useRef();
-    const lastSavedContent = useRef("");
+  const docRef = useRef();
+  const lastSavedContent = useRef("");
 
-    const [socket, setSocket] = useState();
-    const [quill, setQuill] = useState();
-    const [error, setError] = useState();
+  const [socket, setSocket] = useState();
+  const [quill, setQuill] = useState();
+  const [error, setError] = useState();
 
-    const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
 
-    const { id: documentId } = useParams();
+  const { id: documentId } = useParams();
 
-    const Delta = Quill.import("delta");
+  const Delta = Quill.import("delta");
 
-    const contentsHaveChanged = _ => lastSavedContent.current !== quill.getText();
+  const contentsHaveChanged = (_) =>
+    lastSavedContent.current !== quill.getText();
 
-    const saveDocument = async _ => {
-        const data = quill?.getContents().ops;
+  const saveDocument = async (_) => {
+    const data = quill?.getContents().ops;
 
-        if (!quill || !contentsHaveChanged()) return;
-        
-        await updateDoc(docRef.current, {
-            content: data
-        })
+    if (!quill || !contentsHaveChanged()) return;
 
-        lastSavedContent.current = quill.getText();
-        console.log("Successfully saved document.");
-    }
+    await updateDoc(docRef.current, {
+      content: data,
+    });
 
-    useEffect(_ => {
-        const s = io("http://192.168.1.17:3001");
-        // const s = io("http://localhost:3001");
-        setSocket(s);
+    lastSavedContent.current = quill.getText();
+    console.log("Successfully saved document.");
+  };
 
-        return _ => s.disconnect();
-    }, []);
+  useEffect((_) => {
+    const s = io("http://192.168.1.17:3001");
+    // const s = io("http://localhost:3001");
+    setSocket(s);
 
-    useEffect(_ => {
-        if (!socket || !quill) return;
+    return (_) => s.disconnect();
+  }, []);
 
-        window.onbeforeunload = _ => {
-            if (contentsHaveChanged()) return "Some of your edits may not have been saved. Are you sure you would like to exit?";
-        }
+  useEffect(
+    (_) => {
+      if (!socket || !quill) return;
 
-        return _ => window.onbeforeunload = null;
-    }, [socket, quill])
+      window.onbeforeunload = (_) => {
+        if (contentsHaveChanged())
+          return "Some of your edits may not have been saved. Are you sure you would like to exit?";
+      };
 
-    useEffect(_ => {
-        if (!socket || !quill) return;
+      return (_) => (window.onbeforeunload = null);
+    },
+    [socket, quill],
+  );
 
-        const getDocumentContents = async _ => {
-            docRef.current = doc(database, "users", currentUser.uid, "docsData", documentId);
-            const docSnap = await getDoc(docRef.current);
+  useEffect(
+    (_) => {
+      if (!socket || !quill) return;
 
-            if (docSnap.exists()) {
-                socket.emit("get-document", documentId);
+      const getDocumentContents = async (_) => {
+        docRef.current = doc(
+          database,
+          "users",
+          currentUser.uid,
+          "docsData",
+          documentId,
+        );
+        const docSnap = await getDoc(docRef.current);
 
-                const data = docSnap.data();
+        if (docSnap.exists()) {
+          socket.emit("get-document", documentId);
 
-                quill.setContents(new Delta(data.content));
-                lastSavedContent.current = quill.getText();
-                quill.enable();
+          const data = docSnap.data();
 
-                console.log(`Successfully loaded document ${documentId}.`);
-            } else setError(`Could not find document ${documentId}.`);
-        }
+          quill.setContents(new Delta(data.content));
+          lastSavedContent.current = quill.getText();
+          quill.enable();
 
-        getDocumentContents();
-    }, [socket, quill, documentId]);
+          console.log(`Successfully loaded document ${documentId}.`);
+        } else setError(`Could not find document ${documentId}.`);
+      };
 
-    useEffect(_ => {
-        if (!socket || !quill) return;
+      getDocumentContents();
+    },
+    [socket, quill, documentId],
+  );
 
-        const interval = setInterval(_ => {
-            saveDocument();
-        }, SAVE_INTERVAL_MS);
+  useEffect(
+    (_) => {
+      if (!socket || !quill) return;
 
-        return _ => clearInterval(interval);
-    }, [socket, quill])
+      const interval = setInterval((_) => {
+        saveDocument();
+      }, SAVE_INTERVAL_MS);
 
-    useEffect(_ => {
-        if (!socket || !quill) return;
+      return (_) => clearInterval(interval);
+    },
+    [socket, quill],
+  );
 
-        const handler = (delta, oldDelta, source) => {
-            if (source !== "user") return;
+  useEffect(
+    (_) => {
+      if (!socket || !quill) return;
 
-            socket.emit("send-changes", delta);
-        }
+      const handler = (delta, oldDelta, source) => {
+        if (source !== "user") return;
 
-        quill.on("text-change", handler);
+        socket.emit("send-changes", delta);
+      };
 
-        return _ => quill.off("text-change", handler);
-    }, [socket, quill]);
+      quill.on("text-change", handler);
 
-    useEffect(_ => {
-        if (!socket || !quill) return;
+      return (_) => quill.off("text-change", handler);
+    },
+    [socket, quill],
+  );
 
-        const handler = delta => {
-            quill.updateContents(delta);
-        }
+  useEffect(
+    (_) => {
+      if (!socket || !quill) return;
 
-        socket.on("receive-changes", handler);
+      const handler = (delta) => {
+        quill.updateContents(delta);
+      };
 
-        return _ => socket.off("receive-changes", handler);
-    }, [socket, quill]);
+      socket.on("receive-changes", handler);
 
-    const wrapperRef = useCallback(wrapper => {
-        if (!wrapper) return;
-        
-        wrapper.innerHTML = "";
+      return (_) => socket.off("receive-changes", handler);
+    },
+    [socket, quill],
+  );
 
-        const editor = document.createElement("div");
-        wrapper.append(editor);
+  const wrapperRef = useCallback((wrapper) => {
+    if (!wrapper) return;
 
-        const q = new Quill(editor, {theme: "snow"});
-        q.disable();
-        q.setText("Loading document...");
+    wrapper.innerHTML = "";
 
-        setQuill(q);
-    }, []);
+    const editor = document.createElement("div");
+    wrapper.append(editor);
 
-    return !error ? <div id="WRAPPER" ref={wrapperRef}></div> : <div className="text-red-500">{error}</div>
+    const q = new Quill(editor, { theme: "snow" });
+    q.disable();
+    q.setText("Loading document...");
+
+    setQuill(q);
+  }, []);
+
+  return !error ? (
+    <div id="WRAPPER" ref={wrapperRef}></div>
+  ) : (
+    <div className="text-red-500">{error}</div>
+  );
 }

@@ -1,144 +1,146 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Gilda+Display&family=Kaushan+Script&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Gilda+Display&family=Kaushan+Script&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@300;400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-    #HOME h1, #HOME h2, #HOME h3 {
-        font-family: theme("fontFamily.display");
-    }
+  #HOME h1,
+  #HOME h2,
+  #HOME h3 {
+    font-family: theme("fontFamily.display");
+  }
 
-    #HOME h1 {
-        font-size: theme("fontSize.h1");
-        line-height: theme("lineHeight.h1");
-    }
+  #HOME h1 {
+    font-size: theme("fontSize.h1");
+    line-height: theme("lineHeight.h1");
+  }
 
-    #HOME h2 {
-        font-size: theme("fontSize.h2");
-        line-height: theme("lineHeight.h2");
-    }
+  #HOME h2 {
+    font-size: theme("fontSize.h2");
+    line-height: theme("lineHeight.h2");
+  }
 
-    #HOME h3 {
-        font-size: theme("fontSize.h3");
-        line-height: theme("lineHeight.h3");
-    }
+  #HOME h3 {
+    font-size: theme("fontSize.h3");
+    line-height: theme("lineHeight.h3");
+  }
 
-    *:has(#LOADER:not(.hidden)) {
-        overflow: hidden;
-    }
+  *:has(#LOADER:not(.hidden)) {
+    overflow: hidden;
+  }
 }
 
 @layer components {
-    .cta-mask {
-        mask: url("/utils/cta-mask.png");
-        -webkit-mask: url("/utils/cta-mask.png");
-        mask-size: 3000% 100%;
-        -webkit-mask-size: 3000% 100%;
-    }
+  .cta-mask {
+    mask: url("/utils/cta-mask.png");
+    -webkit-mask: url("/utils/cta-mask.png");
+    mask-size: 3000% 100%;
+    -webkit-mask-size: 3000% 100%;
+  }
 
-    .decorated {
-        position: relative;
-        z-index: -1;
-    }
+  .decorated {
+    position: relative;
+    z-index: -1;
+  }
 
-    *:has(.decorated) {
-        z-index: 0;
-    }
+  *:has(.decorated) {
+    z-index: 0;
+  }
 
-    .decorated::before {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        width: 2.25em;
-        translate: .25em -.5em;
-        aspect-ratio: 1;
-        border-radius: 100%;
-        right: 0;
-        top: 0;
-        background-color: theme("accentColor.salmon-lgt");
-    }
+  .decorated::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 2.25em;
+    translate: 0.25em -0.5em;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    right: 0;
+    top: 0;
+    background-color: theme("accentColor.salmon-lgt");
+  }
 
-    #PREVIEW * {
-        cursor: pointer;
-    }
+  #PREVIEW * {
+    cursor: pointer;
+  }
 
-    #PREVIEW p {
-        font-size: 13px;
-    }
+  #PREVIEW p {
+    font-size: 13px;
+  }
 
-    #PREVIEW h1 {
-        font-size: 26px;
-    }
+  #PREVIEW h1 {
+    font-size: 26px;
+  }
 
-    #PREVIEW h2 {
-        font-size: 19.5px;
-    }
+  #PREVIEW h2 {
+    font-size: 19.5px;
+  }
 
-    #PREVIEW h3 {
-        font-size: 15.21px;
-    }
+  #PREVIEW h3 {
+    font-size: 15.21px;
+  }
 }
 
 @layer utilities {
-    li {
-        list-style: none;
-    }
+  li {
+    list-style: none;
+  }
 
-    a:hover {
-        text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
+  }
 
-    input[type="search"]::-webkit-search-cancel-button {
-        display: none;
-    }
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
 
-    img {
-        user-select: none;
-        
-        -webkit-user-drag: none;
-        -khtml-user-drag: none;
-        -moz-user-drag: none;
-        -o-user-drag: none;
-        user-drag: none;
-    }
+  img {
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
 }
 
 ::-webkit-scrollbar {
-    height: 12px;
-    overflow: visible;
-    width: 12px;
+  height: 12px;
+  overflow: visible;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-button {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 ::-webkit-scrollbar-corner {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 body::-webkit-scrollbar-corner {
-    background-color: rgba(0, 0, 0, .05) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, .1);
-    border-radius: 50vw;
-    background-clip: padding-box;
-    padding: 2px;
-    border: 2px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50vw;
+  background-clip: padding-box;
+  padding: 2px;
+  border: 2px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 body:has(#HOME)::-webkit-scrollbar-track {
-    background-color: theme("accentColor.salmon") !important;
+  background-color: theme("accentColor.salmon") !important;
 }

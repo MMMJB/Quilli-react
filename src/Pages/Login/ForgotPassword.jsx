@@ -1,52 +1,84 @@
-import React, { useRef, useState } from 'react'
-import { useAuth } from '../../Contexts/AuthContext'
-import { Link } from "react-router-dom"
+import React, { useRef, useState } from "react";
+import { useAuth } from "../../Contexts/AuthContext";
+import { Link } from "react-router-dom";
 
-const inputStyles = "font-roboto text-editor-lgt text-base rounded-md px-6 py-3 border-gray-border border-[1px] focus-visible:outline-none focus-visible:border-brand focus-visible:border-2 focus-visible:placeholder:text-editor-lgt/50";
+const inputStyles =
+  "font-roboto text-editor-lgt text-base rounded-md px-6 py-3 border-gray-border border-[1px] focus-visible:outline-none focus-visible:border-brand focus-visible:border-2 focus-visible:placeholder:text-editor-lgt/50";
 
 export default function ForgotPassword() {
-    const emailRef = useRef();
-    
-    const [error, setError] = useState("");
-    const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
+  const emailRef = useRef();
 
-    const { resetPassword } = useAuth();
-  
-    const accountSubmit = async e => {
-        e.preventDefault();
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-        try {
-            setMessage("");
-            setError("");
-            setLoading(true);
+  const { resetPassword } = useAuth();
 
-            await resetPassword(emailRef.current.value);
+  const accountSubmit = async (e) => {
+    e.preventDefault();
 
-            setMessage("Success! Check your inbox for further instructions.")
-        } catch {
-            setError("Failed to reset password.");
-        }
+    try {
+      setMessage("");
+      setError("");
+      setLoading(true);
 
-        setLoading(false);
+      await resetPassword(emailRef.current.value);
+
+      setMessage("Success! Check your inbox for further instructions.");
+    } catch {
+      setError("Failed to reset password.");
     }
 
-    return (
-        <div id="SIGNUP" className="w-full h-screen flex flex-col items-center justify-center">
-            <div>
-                <form onSubmit={accountSubmit} className="w-96 py-12 px-12 rounded-lg bg-white/50 border-gray-border border-[1px] flex flex-col gap-8 items-center">
-                    <h2 className="mb-4 font-sans text-2xl text-editor">Reset Password</h2>
-                    <input className={inputStyles} type="email" ref={emailRef} placeholder="Email" required />
-                    <div className="flex items-center mt-4 gap-8">
-                        <Link to="/login" className="font-sans text-brand-dark text-sm">Log In</Link>
-                        <button disabled={loading} className="text-sm text-white font-sans py-2 px-6 bg-brand disabled:bg-brand/50 rounded-md" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-            <span className="font-sans text-editor text-sm mt-4">Need an account? Sign up <Link className="underline" to="/signup">here</Link>.</span>
-            {error && <div className="text-red-500 mt-4 text-sm font-roboto">{error}</div>}
-            {message && <div className="text-green-500 mt-4 text-sm font-roboto">{message}</div>}
-        </div>
-    )
-}
+    setLoading(false);
+  };
 
+  return (
+    <div
+      id="SIGNUP"
+      className="flex h-screen w-full flex-col items-center justify-center"
+    >
+      <div>
+        <form
+          onSubmit={accountSubmit}
+          className="flex w-96 flex-col items-center gap-8 rounded-lg border-[1px] border-gray-border bg-white/50 px-12 py-12"
+        >
+          <h2 className="mb-4 font-sans text-2xl text-editor">
+            Reset Password
+          </h2>
+          <input
+            className={inputStyles}
+            type="email"
+            ref={emailRef}
+            placeholder="Email"
+            required
+          />
+          <div className="mt-4 flex items-center gap-8">
+            <Link to="/login" className="font-sans text-sm text-brand-dark">
+              Log In
+            </Link>
+            <button
+              disabled={loading}
+              className="rounded-md bg-brand px-6 py-2 font-sans text-sm text-white disabled:bg-brand/50"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <span className="mt-4 font-sans text-sm text-editor">
+        Need an account? Sign up{" "}
+        <Link className="underline" to="/signup">
+          here
+        </Link>
+        .
+      </span>
+      {error && (
+        <div className="mt-4 font-roboto text-sm text-red-500">{error}</div>
+      )}
+      {message && (
+        <div className="mt-4 font-roboto text-sm text-green-500">{message}</div>
+      )}
+    </div>
+  );
+}

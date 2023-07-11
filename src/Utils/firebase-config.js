@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app"
-import { getFirestore, setLogLevel } from "firebase/firestore"
+import { initializeApp } from "firebase/app";
+import { getFirestore, setLogLevel } from "firebase/firestore";
 
 // const conf = {
 //     apiKey: import.meta.env.VITE_FIREBASE_API_KEY_DEV,
@@ -11,14 +11,14 @@ import { getFirestore, setLogLevel } from "firebase/firestore"
 //     measurementId: import.meta.env.VITE_MEASUREMENT_ID_DEV
 // }
 const conf = {
-    apiKey: "AIzaSyCXTFwp5xDr7664PNuqOIrZfL-w6aOh7rs",
-    authDomain: "quilli-development.firebaseapp.com",
-    projectId: "quilli-development",
-    storageBucket: "quilli-development.appspot.com",
-    messagingSenderId: "737821289605",
-    appId: "1:737821289605:web:00095005dbe6b307468dec",
-    measurementId: "G-H0T28G83YE"
-}
+  apiKey: "AIzaSyCXTFwp5xDr7664PNuqOIrZfL-w6aOh7rs",
+  authDomain: "quilli-development.firebaseapp.com",
+  projectId: "quilli-development",
+  storageBucket: "quilli-development.appspot.com",
+  messagingSenderId: "737821289605",
+  appId: "1:737821289605:web:00095005dbe6b307468dec",
+  measurementId: "G-H0T28G83YE",
+};
 
 const app = initializeApp(conf);
 
