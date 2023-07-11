@@ -19,7 +19,7 @@ export default function Icon({icon, size}) {
         setBackgroundPosition([-mx, -my * 1.003]);
     }, [size])
 
-    return <span className="inline-block" style={{
+    return <span className="block" style={{
         background: "url(/images/icon-spritesheet.svg)",
         backgroundRepeat: "no-repeat",
         height: `${size}px`,

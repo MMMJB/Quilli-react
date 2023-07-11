@@ -10,7 +10,9 @@ import NewDoc from "./Pages/Documents/NewDoc"
 import Editor from "./Pages/Editor/Editor"
 import NotFound from "./Pages/404/NotFound"
 
-import { BrowserRouter as Router, Routes, Route, Navigate, generatePath } from "react-router-dom"
+import EditorUI from "./Pages/Editor/Editor-ui"
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import PrivateRoute from "./Components/PrivateRoute"
 
 export default function App() {
@@ -38,6 +40,8 @@ export default function App() {
                             <Editor />
                         </PrivateRoute>
                     } />
+
+                    <Route path="/editor" element={<EditorUI />} />
                 </Routes>
             </Router>
         </AuthProvider>

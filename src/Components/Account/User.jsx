@@ -89,7 +89,7 @@ export default function User() {
     }, [updatingProfile])
   
     return (<>
-        <div className="w-64 rounded-xl bg-gray-300 overflow-hidden shadow-lg">
+        <div className="w-64 rounded-xl bg-gray-200 overflow-hidden shadow-lg">
             {
                 !updatingProfile ? <>
                     <div className="w-full bg-white bg-[url('/images/corner_waves.svg')] bg-right-bottom bg-cover flex font-sans rounded-xl relative z-10 shadow-secondary">
@@ -99,7 +99,7 @@ export default function User() {
                             <span className="text-white/50 text-xs">{currentUser.email}</span>
                         </div>
                     </div>
-                    <ul className="w-full bg-white flex flex-col font-roboto border-gray-300 border-4 relative bottom-2 rounded-b-xl">
+                    <ul className="w-full bg-white flex flex-col font-roboto border-gray-200 border-4 relative bottom-2 rounded-b-xl">
                         {
                             menuButtons.map((btn, i) => {
                                 return <UserMenuButton onClick={btn.func} text={btn.text} icon={btn.icon} key={i} />

@@ -4,14 +4,16 @@ import React, { useRef, useState, useEffect } from 'react'
 
 import User from './User'
 
-export default function AccountButton() {
+export default function AccountButton({large}) {
     const accountRef = useRef();
 
     const [accountOpen, setAccountOpen] = useState(false);
 
     useEffect(_ => {
         window.addEventListener("click", e => {
-            if (accountRef.current && !accountRef.current.contains(e.target) && e.target.nodeName !== "BUTTON") {
+            const targetExists = getComputedStyle(e.target).display !== "";
+
+            if (accountRef.current && targetExists && !accountRef.current.contains(e.target)) {
                 setAccountOpen(false);
             }
         })
@@ -20,11 +22,11 @@ export default function AccountButton() {
     // const { currentUser } = useAuth();
 
     return (
-        <div className="relative flex flex-col">
-            <input onInput={_ => setAccountOpen(p => !p)} type="checkbox" className="appearance-none h-7 aspect-square rounded-full bg-[url('https://picsum.photos/100/100')] bg-center bg-cover cursor-pointer" />
+        <div className="relative flex flex-col" ref={accountRef}>
+            <input onInput={_ => setAccountOpen(p => !p)} type="checkbox" className={`${!large ? "h-7" : "h-10"} appearance-none  aspect-square rounded-full bg-[url('https://picsum.photos/100/100')] bg-center bg-cover cursor-pointer`} />
             {
                 accountOpen ? 
-                    <div ref={accountRef} className="absolute right-0 top-8 z-50">
+                    <div className="absolute right-0 top-8 z-50">
                         <User />
                     </div>
                 : ""
