@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Icon({ icon, size }) {
+export default function Icon({ icon, size, display }) {
   const [backgroundSize, setBackgroundSize] = useState([0, 0]);
   const [backgroundPosition, setBackgroundPosition] = useState([0, 0]);
 
@@ -27,7 +27,7 @@ export default function Icon({ icon, size }) {
 
   return (
     <span
-      className="block"
+      className="block aspect-square"
       style={{
         background: "url(/images/icon-spritesheet.svg)",
         backgroundRepeat: "no-repeat",

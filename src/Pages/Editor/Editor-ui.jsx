@@ -8,12 +8,12 @@ export default function EditorUI() {
   return (
     <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
       <EditorHeader />
-      <div className="flex w-full flex-grow overflow-auto">
+      <main className="flex w-full flex-grow overflow-auto whitespace-nowrap">
         <div className="mx-auto w-max">
           <EditorToolbar />
           <EditorPage />
         </div>
-      </div>
+      </main>
     </div>
   );
 }

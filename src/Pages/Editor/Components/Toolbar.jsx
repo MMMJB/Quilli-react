@@ -10,7 +10,12 @@ export default function EditorToolbar() {
       <ul className="mr-9">
         {toolbarItems.map((item, i) => {
           return (
-            <EditorToolbarItem icon={item.icon} items={item.items} key={i} />
+            <EditorToolbarItem
+              icon={item.icon}
+              items={item.items}
+              index={i}
+              key={i}
+            />
           );
         })}
       </ul>

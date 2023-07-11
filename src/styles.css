@@ -61,6 +61,19 @@
     background-color: theme("accentColor.salmon-lgt");
   }
 
+  #POPOUT-COVER:not(.active):not(:hover)
+    + #POPOUT-WRAPPER
+    > #POPOUT:not(:hover):not(:has(*:focus-visible)) {
+    translate: 100%;
+    pointer-events: none;
+  }
+
+  #POPOUT-COVER.active,
+  #POPOUT-COVER:hover,
+  #POPOUT-COVER:has(+ #POPOUT-WRAPPER *:hover) {
+    scale: 1.1;
+  }
+
   #PREVIEW * {
     cursor: pointer;
   }
@@ -92,6 +105,10 @@
   }
 
   input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
     display: none;
   }
 
