@@ -4,6 +4,8 @@ import Icon from "../../../Components/Icon";
 import EditorToolbarButton from "./ToolbarButton";
 import EditorToolbarInput from "./ToolbarInput";
 import EditorToolbarModal from "./ToolbarModal";
+import EditorToolbarColorInput from "./ToolbarColorInput";
+import EditorToolbarImageInput from "./ToolbarImageInput";
 import EditorToolbarDivider from "./ToolbarDivider";
 
 const ENABLE_DIVIDERS = false;
@@ -28,7 +30,7 @@ export default function EditorToolbarItem({ icon, items, index }) {
       >
         <ul
           id="POPOUT"
-          className="flex h-10 min-w-[220px] flex-row-reverse items-center gap-5 rounded-l-full bg-[#FCFCFC] py-2 pl-6 pr-9 shadow-secondary transition-all duration-[350ms] ease-in-out"
+          className="flex h-10 min-w-[220px] flex-row-reverse items-center gap-5 rounded-l-full bg-[#FCFCFC] py-2 pl-6 pr-9 shadow-secondary transition-all duration-[250ms] ease-in-out"
         >
           {items.map((item) => {
             return item.type == "modal" ? (
@@ -40,6 +42,13 @@ export default function EditorToolbarItem({ icon, items, index }) {
               />
             ) : item.type == "value" ? (
               <EditorToolbarInput defaultValue={12} />
+            ) : item.type == "color" ? (
+              <EditorToolbarColorInput
+                icon={item.icon}
+                defaultValue={item.default}
+              />
+            ) : item.type == "image" ? (
+              <EditorToolbarImageInput icon={item.icon} />
             ) : ENABLE_DIVIDERS ? (
               <EditorToolbarDivider />
             ) : (

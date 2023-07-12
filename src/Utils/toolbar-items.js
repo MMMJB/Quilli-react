@@ -79,13 +79,13 @@ export default [
       {
         type: "color",
         tooltip: "Text Color",
-        default: 0x000000ff,
+        default: "rgba(0,0,0)",
         icon: 1,
       },
       {
         type: "color",
         tooltip: "Highlight Text",
-        default: 0xffff0000,
+        default: "rgb(255,255,0)",
         icon: 2,
       },
       {
@@ -94,7 +94,7 @@ export default [
       {
         type: "color",
         tooltip: "Change Background Color",
-        default: 0xfffffdff,
+        default: "rgb(255,255,240)",
         icon: 15,
       },
       {
