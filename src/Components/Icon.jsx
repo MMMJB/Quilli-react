@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Icon({ icon, size, display }) {
+export default function Icon({ icon, size }) {
   const [backgroundSize, setBackgroundSize] = useState([0, 0]);
   const [backgroundPosition, setBackgroundPosition] = useState([0, 0]);
 

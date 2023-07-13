@@ -32,25 +32,19 @@ export default function EditorToolbarItem({ icon, items, index }) {
           id="POPOUT"
           className="flex h-10 min-w-[220px] flex-row-reverse items-center gap-5 rounded-l-full bg-[#FCFCFC] py-2 pl-6 pr-9 shadow-secondary transition-all duration-[250ms] ease-in-out"
         >
-          {items.map((item) => {
+          {items.map((item, i) => {
             return item.type == "modal" ? (
-              <EditorToolbarModal icon={item.icon} />
+              <EditorToolbarModal key={item.tooltip} icon={item.icon} />
             ) : item.type == "button" ? (
-              <EditorToolbarButton
-                icon={item.icon}
-                iconSize={item.size || 12}
-              />
+              <EditorToolbarButton key={item.tooltip} data={item} />
             ) : item.type == "value" ? (
-              <EditorToolbarInput defaultValue={12} />
+              <EditorToolbarInput key={item.tooltip} data={item} />
             ) : item.type == "color" ? (
-              <EditorToolbarColorInput
-                icon={item.icon}
-                defaultValue={item.default}
-              />
+              <EditorToolbarColorInput key={item.tooltip} data={item} />
             ) : item.type == "image" ? (
-              <EditorToolbarImageInput icon={item.icon} />
+              <EditorToolbarImageInput key={item.tooltip} data={item} />
             ) : ENABLE_DIVIDERS ? (
-              <EditorToolbarDivider />
+              <EditorToolbarDivider key={i} />
             ) : (
               ""
             );

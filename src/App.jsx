@@ -1,5 +1,7 @@
 import React from "react";
+
 import { AuthProvider } from "./Contexts/AuthContext";
+import { EditorProvider } from "./Contexts/EditorContext";
 
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Login/Signup";
@@ -50,7 +52,14 @@ export default function App() {
             }
           />
 
-          <Route path="/editor" element={<EditorUI />} />
+          <Route
+            path="/editor"
+            element={
+              <EditorProvider>
+                <EditorUI />
+              </EditorProvider>
+            }
+          />
         </Routes>
       </Router>
     </AuthProvider>
