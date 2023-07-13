@@ -4,6 +4,10 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Quill from "quill";
 
+const Size = Quill.import("attributors/style/size");
+Size.whitelist = Array.from({ length: 11 }, (_, i) => `${i * 6}px`).slice(1);
+Quill.register(Size, true);
+
 export default function EditorPage() {
   const [wrapper, setWrapper] = useState();
 
@@ -18,6 +22,7 @@ export default function EditorPage() {
     wrapper.append(editor);
 
     const q = new Quill(editor);
+    q.focus();
     setQuill(q);
   }, []);
 

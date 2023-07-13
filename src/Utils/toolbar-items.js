@@ -54,7 +54,7 @@ export default [
         type: "button",
         tooltip: "Align Text Left",
         targetFormat: "align",
-        formatValue: "",
+        formatValue: false,
         icon: 7,
         iconSize: 14,
       },
@@ -104,7 +104,7 @@ export default [
       {
         type: "color",
         tooltip: "Highlight Text",
-        default: "rgb(255,255,0)",
+        default: "rgba(255,255,0)",
         icon: 2,
       },
       {

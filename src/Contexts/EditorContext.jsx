@@ -19,7 +19,10 @@ export function EditorProvider({ children }) {
       if (!quill) return;
 
       const handler = (_) => {
-        setFormat(quill.getFormat());
+        const f = quill.getFormat();
+        if (!f.hasOwnProperty("align")) f["align"] = false;
+
+        setFormat(f);
       };
 
       quill.on("editor-change", handler);

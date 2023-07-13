@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useEditor } from "../../../Contexts/EditorContext";
 
 import Icon from "../../../Components/Icon";
 
 export default function EditorToolbarInput({ data }) {
   const [size, setSize] = useState(data.default);
+
+  const { quill, changeFormat } = useEditor();
 
   const changeSize = (amount) => {
     if (size + amount > data.max) return setSize(data.max);
@@ -11,6 +15,15 @@ export default function EditorToolbarInput({ data }) {
 
     setSize((p) => p + amount);
   };
+
+  useEffect(
+    (_) => {
+      if (!quill) return;
+
+      changeFormat(data.targetFormat, `${size}px`);
+    },
+    [quill, size],
+  );
 
   return (
     <li>

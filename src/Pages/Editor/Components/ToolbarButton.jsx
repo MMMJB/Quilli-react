@@ -21,7 +21,9 @@ export default function EditorToolbarButton({ data }) {
       setHighlighted(
         data.toggleable
           ? format[data.targetFormat] || false
-          : format[data.targetFormat] == data.formatValue,
+          : data.hasOwnProperty("formatValue")
+          ? format[data.targetFormat] == data.formatValue
+          : false,
       );
     },
     [format],
@@ -30,7 +32,7 @@ export default function EditorToolbarButton({ data }) {
   const clickHandler = (_) => {
     changeFormat(
       data.targetFormat,
-      data.formatValue ? data.formatValue : !highlighted,
+      data.hasOwnProperty("formatValue") ? data.formatValue : !highlighted,
     );
     if (data.toggleable) setHighlighted((p) => !p);
   };
