@@ -112,6 +112,10 @@
     display: none;
   }
 
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    display: none;
+  }
+
   img {
     user-select: none;
 

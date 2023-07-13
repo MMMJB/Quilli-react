@@ -98,13 +98,16 @@ export default [
       {
         type: "color",
         tooltip: "Text Color",
-        default: "rgba(0,0,0)",
+        targetFormat: "color",
+        default: "#000000",
         icon: 1,
       },
       {
         type: "color",
         tooltip: "Highlight Text",
-        default: "rgba(255,255,0)",
+        targetFormat: "background",
+        toggleable: true,
+        default: "#FFFF00",
         icon: 2,
       },
       {
@@ -113,7 +116,7 @@ export default [
       {
         type: "color",
         tooltip: "Change Background Color",
-        default: "rgb(255,255,240)",
+        default: "#FFFFFD",
         icon: 15,
       },
       {

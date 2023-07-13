@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import EditorHeader from "./Components/Header";
 import EditorToolbar from "./Components/Toolbar";
 import EditorPage from "./Components/Page";
 
 export default function EditorUI() {
+  const colorRef = useRef();
+
   return (
     <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
       <EditorHeader />

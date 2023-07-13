@@ -26,9 +26,10 @@ export default function EditorToolbarItem({ icon, items, index }) {
       </div>
       <div
         id="POPOUT-WRAPPER"
-        className="absolute top-1/2 -z-10 mr-6 flex h-[101%] -translate-y-1/2 items-center overflow-x-hidden"
+        className="absolute top-1/2 -z-10 mr-6 flex h-[101%] -translate-y-1/2 items-center overflow-hidden overflow-x-hidden"
       >
         <ul
+          onClick={(e) => setActive(!e.target.classList.contains("ACTIVE"))}
           id="POPOUT"
           className="flex h-10 min-w-[220px] flex-row-reverse items-center gap-5 rounded-l-full bg-[#FCFCFC] py-2 pl-6 pr-9 shadow-secondary transition-all duration-[250ms] ease-in-out"
         >
