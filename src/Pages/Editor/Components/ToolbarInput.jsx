@@ -7,7 +7,7 @@ import Icon from "../../../Components/Icon";
 export default function EditorToolbarInput({ data }) {
   const [size, setSize] = useState(data.default);
 
-  const { quill, changeFormat } = useEditor();
+  const { quill, format, changeFormat } = useEditor();
 
   const changeSize = (amount) => {
     if (size + amount > data.max) return setSize(data.max);
@@ -23,6 +23,15 @@ export default function EditorToolbarInput({ data }) {
       changeFormat(data.targetFormat, `${size}px`);
     },
     [quill, size],
+  );
+
+  useEffect(
+    (_) => {
+      if (!quill || !format) return;
+
+      if (!format[data.targetFormat]) setSize(12);
+    },
+    [quill, format],
   );
 
   return (

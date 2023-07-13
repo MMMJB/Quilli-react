@@ -9,6 +9,7 @@ export function useEditor() {
 export function EditorProvider({ children }) {
   const [quill, setQuill] = useState();
   const [format, setFormat] = useState();
+  const [pageColor, setPageColor] = useState("#FFFFFD");
 
   const changeFormat = (property, newValue) => {
     quill.format(property, newValue);
@@ -37,6 +38,8 @@ export function EditorProvider({ children }) {
     setQuill,
     format,
     changeFormat,
+    pageColor,
+    setPageColor,
   };
 
   return (

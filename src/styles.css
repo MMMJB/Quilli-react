@@ -73,26 +73,6 @@
   #POPOUT-COVER:has(+ #POPOUT-WRAPPER *:hover) {
     scale: 1.1;
   }
-
-  #PREVIEW * {
-    cursor: pointer;
-  }
-
-  #PREVIEW p {
-    font-size: 13px;
-  }
-
-  #PREVIEW h1 {
-    font-size: 26px;
-  }
-
-  #PREVIEW h2 {
-    font-size: 19.5px;
-  }
-
-  #PREVIEW h3 {
-    font-size: 15.21px;
-  }
 }
 
 @layer utilities {
@@ -116,6 +96,10 @@
     display: none;
   }
 
+  :focus-visible {
+    outline: none;
+  }
+
   img {
     user-select: none;
 
@@ -125,43 +109,68 @@
     -o-user-drag: none;
     user-drag: none;
   }
+
+  ::-webkit-scrollbar {
+    height: 12px;
+    overflow: visible;
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  body::-webkit-scrollbar-corner {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50vw;
+    background-clip: padding-box;
+    padding: 2px;
+    border: 2px solid transparent;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  body:has(#HOME)::-webkit-scrollbar-track {
+    background-color: theme("accentColor.salmon") !important;
+  }
 }
 
-::-webkit-scrollbar {
-  height: 12px;
-  overflow: visible;
-  width: 12px;
+@page {
+  margin: 1in;
 }
 
-::-webkit-scrollbar-button {
-  width: 0;
-  height: 0;
-}
+@media print {
+  body {
+    background: none;
+  }
 
-::-webkit-scrollbar-corner {
-  background-color: transparent;
-}
+  #PAGE-WRAPPER,
+  *:has(#PAGE-WRAPPER),
+  .ql-editor {
+    width: 6.5in;
+    height: 9in;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+  }
 
-body::-webkit-scrollbar-corner {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50vw;
-  background-clip: padding-box;
-  padding: 2px;
-  border: 2px solid transparent;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-body:has(#HOME)::-webkit-scrollbar-track {
-  background-color: theme("accentColor.salmon") !important;
+  #HEADER,
+  #TOOLBAR {
+    display: none;
+  }
 }

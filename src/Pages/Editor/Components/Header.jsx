@@ -4,7 +4,10 @@ import AccountButton from "../../../Components/Account/AccountButton";
 
 export default function EditorHeader() {
   return (
-    <div className="flex w-full items-center gap-6 border-[1px] border-b-gray-border bg-white px-6 py-3">
+    <div
+      id="HEADER"
+      className="flex w-full items-center gap-6 border-[1px] border-b-gray-border bg-white px-6 py-3"
+    >
       <img
         className="cursor-pointer"
         src="/images/logo_flat.png"

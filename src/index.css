@@ -595,26 +595,6 @@ video {
   scale: 1.1 !important;
 }
 
-#PREVIEW * {
-  cursor: pointer;
-}
-
-#PREVIEW p {
-  font-size: 13px;
-}
-
-#PREVIEW h1 {
-  font-size: 26px;
-}
-
-#PREVIEW h2 {
-  font-size: 19.5px;
-}
-
-#PREVIEW h3 {
-  font-size: 15.21px;
-}
-
 .fixed{
   position: fixed;
 }
@@ -1268,11 +1248,6 @@ video {
   background-color: rgb(252 252 252 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#FFFFFD\]{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 253 / var(--tw-bg-opacity));
-}
-
 .bg-brand{
   --tw-bg-opacity: 1;
   background-color: rgb(48 155 160 / var(--tw-bg-opacity));
@@ -1405,6 +1380,10 @@ video {
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.pl-2{
+  padding-left: 0.5rem;
 }
 
 .pl-28{
@@ -1675,6 +1654,10 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   display: none;
 }
 
+:focus-visible {
+  outline: none;
+}
+
 img {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1684,18 +1667,6 @@ img {
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
-}
-
-.\[direction\:ltr\]{
-  direction: ltr;
-}
-
-.\[direction\:rtl\]{
-  direction: rtl;
-}
-
-.\[filter\:sepia\(1\)_hue-rotate\(125deg\)\]{
-  filter: sepia(1) hue-rotate(125deg);
 }
 
 ::-webkit-scrollbar {
@@ -1735,6 +1706,43 @@ body::-webkit-scrollbar-corner {
 
 body:has(#HOME)::-webkit-scrollbar-track {
   background-color: #FEECE2 !important;
+}
+
+.\[direction\:ltr\]{
+  direction: ltr;
+}
+
+.\[direction\:rtl\]{
+  direction: rtl;
+}
+
+.\[filter\:sepia\(1\)_hue-rotate\(125deg\)\]{
+  filter: sepia(1) hue-rotate(125deg);
+}
+
+@page {
+  margin: 1in;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+
+  #PAGE-WRAPPER,
+  *:has(#PAGE-WRAPPER),
+  .ql-editor {
+    width: 6.5in;
+    height: 9in;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  #HEADER,
+  #TOOLBAR {
+    display: none;
+  }
 }
 
 .placeholder\:text-home-lgt::-moz-placeholder{
@@ -1787,11 +1795,6 @@ body:has(#HOME)::-webkit-scrollbar-track {
   content: var(--tw-content);
   --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.before\:rounded-lg::before{
-  content: var(--tw-content);
-  border-radius: 0.5rem;
 }
 
 .before\:rounded-md::before{

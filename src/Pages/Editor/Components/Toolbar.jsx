@@ -6,7 +6,10 @@ import EditorToolbarItem from "./ToolbarItem";
 
 export default function EditorToolbar() {
   return (
-    <div className="sticky top-6 inline-block h-0 min-w-[300px] align-top">
+    <div
+      id="TOOLBAR"
+      className="sticky top-6 inline-block h-0 min-w-[300px] align-top"
+    >
       <ul className="mr-9">
         {toolbarItems.map((item, i) => {
           return (

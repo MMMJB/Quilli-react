@@ -116,6 +116,7 @@ export default [
       {
         type: "color",
         tooltip: "Change Background Color",
+        targetFormat: "page",
         default: "#FFFFFD",
         icon: 15,
       },

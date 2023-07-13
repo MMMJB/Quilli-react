@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Icon from "../../../Components/Icon";
 import EditorToolbarButton from "./ToolbarButton";
 import EditorToolbarInput from "./ToolbarInput";
+import EditorPageColor from "./PageColor";
 import EditorToolbarModal from "./ToolbarModal";
 import EditorToolbarColorInput from "./ToolbarColorInput";
 import EditorToolbarImageInput from "./ToolbarImageInput";
@@ -26,7 +27,7 @@ export default function EditorToolbarItem({ icon, items, index }) {
       </div>
       <div
         id="POPOUT-WRAPPER"
-        className="absolute top-1/2 -z-10 mr-6 flex h-[101%] -translate-y-1/2 items-center overflow-hidden overflow-x-hidden"
+        className="absolute top-1/2 -z-10 mr-6 flex h-[101%] -translate-y-1/2 items-center overflow-hidden overflow-x-hidden pl-2"
       >
         <ul
           onClick={(e) => setActive(!e.target.classList.contains("ACTIVE"))}
@@ -41,7 +42,11 @@ export default function EditorToolbarItem({ icon, items, index }) {
             ) : item.type == "value" ? (
               <EditorToolbarInput key={item.tooltip} data={item} />
             ) : item.type == "color" ? (
-              <EditorToolbarColorInput key={item.tooltip} data={item} />
+              item.targetFormat !== "page" ? (
+                <EditorToolbarColorInput key={item.tooltip} data={item} />
+              ) : (
+                <EditorPageColor key={item.tooltip} />
+              )
             ) : item.type == "image" ? (
               <EditorToolbarImageInput key={item.tooltip} data={item} />
             ) : ENABLE_DIVIDERS ? (

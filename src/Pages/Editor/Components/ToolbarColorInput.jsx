@@ -14,13 +14,12 @@ export default function EditorToolbarColorInput({ data }) {
     (_) => {
       if (!quill || !format) return;
 
-      if (format.hasOwnProperty(data.targetFormat)) {
-        setActive(true);
-        setSelectedColor(format[data.targetFormat]);
-      } else {
-        setActive(false);
-        setSelectedColor(data.default);
-      }
+      const propertyExists = format.hasOwnProperty(data.targetFormat);
+
+      setActive(propertyExists);
+      setSelectedColor(
+        propertyExists ? format[data.targetFormat] : data.default,
+      );
     },
     [quill, format],
   );
