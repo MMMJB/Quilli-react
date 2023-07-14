@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
+import Quill from "quill";
+
 const EditorContext = React.createContext();
 
 export function useEditor() {
@@ -8,8 +10,10 @@ export function useEditor() {
 
 export function EditorProvider({ children }) {
   const [quill, setQuill] = useState();
+  const [editor, setEditor] = useState();
   const [format, setFormat] = useState();
   const [pageColor, setPageColor] = useState("#FFFFFD");
+  const [loading, setLoading] = useState(true);
 
   const changeFormat = (property, newValue) => {
     quill.format(property, newValue);
@@ -33,9 +37,21 @@ export function EditorProvider({ children }) {
     [quill],
   );
 
+  useEffect((_) => {
+    const editor = document.createElement("div");
+    setEditor(editor);
+
+    const q = new Quill(editor);
+    q.disable();
+    q.setText("Loading document...");
+
+    setQuill(q);
+    setLoading(false);
+  }, []);
+
   const value = {
     quill,
-    setQuill,
+    editor,
     format,
     changeFormat,
     pageColor,
@@ -43,6 +59,8 @@ export function EditorProvider({ children }) {
   };
 
   return (
-    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
+    <EditorContext.Provider value={value}>
+      {!loading && children}
+    </EditorContext.Provider>
   );
 }

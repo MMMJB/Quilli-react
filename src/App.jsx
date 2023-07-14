@@ -47,17 +47,10 @@ export default function App() {
             path="/documents/:id"
             element={
               <PrivateRoute>
-                <Editor />
+                <EditorProvider>
+                  <Editor />
+                </EditorProvider>
               </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/editor"
-            element={
-              <EditorProvider>
-                <EditorUI />
-              </EditorProvider>
             }
           />
         </Routes>

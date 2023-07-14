@@ -9,19 +9,16 @@ Size.whitelist = Array.from({ length: 11 }, (_, i) => `${i * 6}px`).slice(1);
 Quill.register(Size, true);
 
 export default function EditorPage() {
-  const { quill, setQuill, pageColor } = useEditor();
+  const { quill, pageColor, editor } = useEditor();
 
-  const wrapperRef = useCallback((wrapper) => {
-    if (!wrapper) return;
-    wrapper.innerHTML = "";
+  const wrapperRef = useCallback(
+    (wrapper) => {
+      if (!wrapper || !editor) return;
 
-    const editor = document.createElement("div");
-    wrapper.append(editor);
-
-    const q = new Quill(editor);
-    q.focus();
-    setQuill(q);
-  }, []);
+      wrapper.append(editor);
+    },
+    [editor],
+  );
 
   return (
     <div className="mt-3 inline-block">

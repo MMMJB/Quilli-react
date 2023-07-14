@@ -8,17 +8,23 @@ import "quill/dist/quill.snow.css";
 
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { database, SAVE_INTERVAL_MS } from "../../Utils/firebase-config";
+
 import { useAuth } from "../../Contexts/AuthContext";
+import { useEditor } from "../../Contexts/EditorContext";
+
+import EditorHeader from "./Components/Header";
+import EditorToolbar from "./Components/Toolbar";
+import EditorPage from "./Components/Page";
 
 export default function Editor() {
   const docRef = useRef();
   const lastSavedContent = useRef("");
 
   const [socket, setSocket] = useState();
-  const [quill, setQuill] = useState();
   const [error, setError] = useState();
 
   const { currentUser } = useAuth();
+  const { quill, editor } = useEditor();
 
   const { id: documentId } = useParams();
 
@@ -139,23 +145,16 @@ export default function Editor() {
     [socket, quill],
   );
 
-  const wrapperRef = useCallback((wrapper) => {
-    if (!wrapper) return;
-
-    wrapper.innerHTML = "";
-
-    const editor = document.createElement("div");
-    wrapper.append(editor);
-
-    const q = new Quill(editor, { theme: "snow" });
-    q.disable();
-    q.setText("Loading document...");
-
-    setQuill(q);
-  }, []);
-
   return !error ? (
-    <div id="WRAPPER" ref={wrapperRef}></div>
+    <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
+      <EditorHeader />
+      <main className="flex w-full flex-grow overflow-auto whitespace-nowrap">
+        <div className="mx-auto w-max">
+          <EditorToolbar />
+          <EditorPage />
+        </div>
+      </main>
+    </div>
   ) : (
     <div className="text-red-500">{error}</div>
   );

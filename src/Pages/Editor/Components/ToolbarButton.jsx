@@ -16,7 +16,7 @@ export default function EditorToolbarButton({ data }) {
 
   useEffect(
     (_) => {
-      if (!quill) return;
+      if (!quill || !format) return;
 
       setHighlighted(
         data.toggleable
