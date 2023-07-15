@@ -1,8 +1,9 @@
 import React from "react";
 
 import AccountButton from "../../../Components/Account/AccountButton";
+import WaveLoader from "../../../Components/WaveLoader";
 
-export default function EditorHeader() {
+export default function EditorHeader({ saved }) {
   return (
     <div
       id="HEADER"
@@ -22,6 +23,7 @@ export default function EditorHeader() {
           Last edited on January 29, 1845
         </span>
       </div>
+      <WaveLoader loading={!saved} />
       <AccountButton large={true} />
     </div>
   );

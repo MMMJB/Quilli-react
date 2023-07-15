@@ -14,6 +14,7 @@ export default function EditorPage() {
   const wrapperRef = useCallback(
     (wrapper) => {
       if (!wrapper || !editor) return;
+      wrapper.innerHTML = "";
 
       wrapper.append(editor);
     },

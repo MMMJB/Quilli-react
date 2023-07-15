@@ -30,10 +30,15 @@ export default {
           },
           to: { "-webkit-mask-position": "0 0", "mask-position": "0 0" },
         },
+        "scroll-left": {
+          from: { "background-position": "100% 0" },
+          to: { "background-position": "0 0" },
+        },
       },
       animation: {
         cta: "cta 700ms steps(29) forwards",
         "cta-rev": "cta-rev 700ms steps(29) forwards",
+        "scroll-left": "scroll-left 500ms linear infinite",
       },
       boxShadow: {
         default: "0px 2px 4px 2px rgba(60, 64, 67, .149)",

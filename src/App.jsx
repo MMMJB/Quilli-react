@@ -12,8 +12,6 @@ import NewDoc from "./Pages/Documents/NewDoc";
 import Editor from "./Pages/Editor/Editor";
 import NotFound from "./Pages/404/NotFound";
 
-import EditorUI from "./Pages/Editor/Editor-ui";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./Components/PrivateRoute";
 

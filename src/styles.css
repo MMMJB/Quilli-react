@@ -73,6 +73,10 @@
   #POPOUT-COVER:has(+ #POPOUT-WRAPPER *:hover) {
     scale: 1.1;
   }
+
+  #PREVIEW * {
+    cursor: pointer;
+  }
 }
 
 @layer utilities {

@@ -10,6 +10,7 @@ export function useEditor() {
 
 export function EditorProvider({ children }) {
   const [quill, setQuill] = useState();
+  const [quillContent, setQuillContent] = useState("");
   const [editor, setEditor] = useState();
   const [format, setFormat] = useState();
   const [pageColor, setPageColor] = useState("#FFFFFD");
@@ -28,6 +29,8 @@ export function EditorProvider({ children }) {
         if (!f.hasOwnProperty("align")) f["align"] = false;
 
         setFormat(f);
+
+        setQuillContent(quill.getText());
       };
 
       quill.on("editor-change", handler);
@@ -51,6 +54,7 @@ export function EditorProvider({ children }) {
 
   const value = {
     quill,
+    quillContent,
     editor,
     format,
     changeFormat,

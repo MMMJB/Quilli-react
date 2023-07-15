@@ -595,6 +595,10 @@ video {
   scale: 1.1 !important;
 }
 
+#PREVIEW * {
+  cursor: pointer;
+}
+
 .fixed{
   position: fixed;
 }
@@ -777,6 +781,10 @@ video {
   display: none;
 }
 
+.aspect-\[2\/1\]{
+  aspect-ratio: 2/1;
+}
+
 .aspect-square{
   aspect-ratio: 1 / 1;
 }
@@ -795,6 +803,10 @@ video {
 
 .h-2{
   height: 0.5rem;
+}
+
+.h-3{
+  height: 0.75rem;
 }
 
 .h-4{
@@ -1029,6 +1041,20 @@ video {
   animation: cta-rev 700ms steps(29) forwards;
 }
 
+@keyframes scroll-left{
+  from{
+    background-position: 100% 0;
+  }
+
+  to{
+    background-position: 0 0;
+  }
+}
+
+.animate-scroll-left{
+  animation: scroll-left 500ms linear infinite;
+}
+
 .cursor-default{
   cursor: default;
 }
@@ -1171,6 +1197,14 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-\[50\%\]{
+  border-radius: 50%;
+}
+
+.rounded-\[40\%\]{
+  border-radius: 40%;
+}
+
 .rounded-b-xl{
   border-bottom-right-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
@@ -1298,12 +1332,28 @@ video {
   background-image: url('/images/corner_waves.svg');
 }
 
+.bg-\[url\(\'\/images\/wave_loader\.svg\'\)\]{
+  background-image: url('/images/wave_loader.svg');
+}
+
 .bg-\[url\(\'https\:\/\/picsum\.photos\/100\/100\'\)\]{
   background-image: url('https://picsum.photos/100/100');
 }
 
+.bg-contain{
+  background-size: contain;
+}
+
 .bg-cover{
   background-size: cover;
+}
+
+.bg-\[length\:200\%_100\%\]{
+  background-size: 200% 100%;
+}
+
+.bg-\[length\:100\%_200\%\]{
+  background-size: 100% 200%;
 }
 
 .bg-center{
@@ -1312,6 +1362,10 @@ video {
 
 .bg-right-bottom{
   background-position: right bottom;
+}
+
+.bg-repeat-x{
+  background-repeat: repeat-x;
 }
 
 .p-1{
@@ -1560,6 +1614,14 @@ video {
   text-decoration-line: underline;
 }
 
+.opacity-0{
+  opacity: 0;
+}
+
+.opacity-100{
+  opacity: 1;
+}
+
 .shadow-\[0px_24px_60px_rgba\(0\2c 0\2c 0\2c \.01\)\2c 0px_34px_20px_rgba\(0\2c 0\2c 0\2c \.05\)\2c 0px_15px_15px_rgba\(0\2c 0\2c 0\2c \.09\)\2c 0px_4px_8px_rgba\(0\2c 0\2c 0\2c \.1\)\]{
   --tw-shadow: 0px 24px 60px rgba(0,0,0,.01),0px 34px 20px rgba(0,0,0,.05),0px 15px 15px rgba(0,0,0,.09),0px 4px 8px rgba(0,0,0,.1);
   --tw-shadow-colored: 0px 24px 60px var(--tw-shadow-color), 0px 34px 20px var(--tw-shadow-color), 0px 15px 15px var(--tw-shadow-color), 0px 4px 8px var(--tw-shadow-color);
@@ -1622,6 +1684,12 @@ video {
 
 .transition-shadow{
   transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity{
+  transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }

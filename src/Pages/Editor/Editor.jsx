@@ -22,9 +22,10 @@ export default function Editor() {
 
   const [socket, setSocket] = useState();
   const [error, setError] = useState();
+  const [saved, setSaved] = useState(true);
 
   const { currentUser } = useAuth();
-  const { quill, editor } = useEditor();
+  const { quill, quillContent } = useEditor();
 
   const { id: documentId } = useParams();
 
@@ -34,15 +35,17 @@ export default function Editor() {
     lastSavedContent.current !== quill.getText();
 
   const saveDocument = async (_) => {
-    const data = quill?.getContents().ops;
-
     if (!quill || !contentsHaveChanged()) return;
+
+    const data = quill?.getContents().ops;
 
     await updateDoc(docRef.current, {
       content: data,
     });
 
     lastSavedContent.current = quill.getText();
+    setSaved(true);
+
     console.log("Successfully saved document.");
   };
 
@@ -145,9 +148,18 @@ export default function Editor() {
     [socket, quill],
   );
 
+  useEffect(
+    (_) => {
+      if (!quill) return;
+
+      setSaved(!contentsHaveChanged());
+    },
+    [quill, quillContent],
+  );
+
   return !error ? (
     <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
-      <EditorHeader />
+      <EditorHeader saved={saved} />
       <main className="flex w-full flex-grow overflow-auto whitespace-nowrap">
         <div className="mx-auto w-max">
           <EditorToolbar />
