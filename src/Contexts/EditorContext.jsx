@@ -1,6 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import Quill from "quill";
+
+const initialFormats = {
+  bold: false,
+  italic: false,
+  underline: false,
+  align: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "TOGGLE":
+      return { ...state, [action.format]: !state[action.format] };
+    case "SET":
+      return { ...state, [action.format]: action.value };
+    case "SETALL":
+      return { ...initialFormats, ...action.formats };
+    default:
+      return state;
+  }
+};
 
 const EditorContext = React.createContext();
 
@@ -12,39 +32,47 @@ export function EditorProvider({ children }) {
   const [quill, setQuill] = useState();
   const [quillContent, setQuillContent] = useState("");
   const [editor, setEditor] = useState();
-  const [format, setFormat] = useState();
-  const [pageColor, setPageColor] = useState("#FFFFFD");
   const [loading, setLoading] = useState(true);
+  const [pageColor, setPageColor] = useState("#FFFFFD");
+
+  const [format, dispatchFormat] = useReducer(reducer, initialFormats);
+
+  const bindingTargets = ["bold", "italic", "underline"];
+  const bindings = Object.assign(
+    {},
+    ...bindingTargets.map((b) => ({
+      [b]: {
+        handler: (range, context) => {
+          if (range.length > 0) return;
+
+          dispatchFormat({ type: "TOGGLE", format: b });
+
+          return true;
+        },
+      },
+    })),
+  );
 
   const changeFormat = (property, newValue) => {
     quill.format(property, newValue);
   };
 
-  useEffect(
-    (_) => {
-      if (!quill) return;
+  const handleEdits = (_) => {
+    const f = quill.getFormat();
 
-      const handler = (_) => {
-        const f = quill.getFormat();
-        if (!f.hasOwnProperty("align")) f["align"] = false;
+    dispatchFormat({ type: "SETALL", formats: f });
 
-        setFormat(f);
-
-        setQuillContent(quill.getText());
-      };
-
-      quill.on("editor-change", handler);
-
-      return (_) => quill.off("editor-change", handler);
-    },
-    [quill],
-  );
+    setQuillContent(quill.getText());
+  };
 
   useEffect((_) => {
     const editor = document.createElement("div");
     setEditor(editor);
 
-    const q = new Quill(editor);
+    const q = new Quill(editor, {
+      modules: { keyboard: { bindings: bindings } },
+    });
+
     q.disable();
     q.setText("Loading document...");
 
@@ -56,6 +84,7 @@ export function EditorProvider({ children }) {
     quill,
     quillContent,
     editor,
+    handleEdits,
     format,
     changeFormat,
     pageColor,

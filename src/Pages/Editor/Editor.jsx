@@ -12,6 +12,7 @@ import { database, SAVE_INTERVAL_MS } from "../../Utils/firebase-config";
 import { useAuth } from "../../Contexts/AuthContext";
 import { useEditor } from "../../Contexts/EditorContext";
 
+import Loader from "../../Components/Loader";
 import EditorHeader from "./Components/Header";
 import EditorToolbar from "./Components/Toolbar";
 import EditorPage from "./Components/Page";
@@ -25,7 +26,7 @@ export default function Editor() {
   const [saved, setSaved] = useState(true);
 
   const { currentUser } = useAuth();
-  const { quill, quillContent } = useEditor();
+  const { quill, quillContent, handleEdits } = useEditor();
 
   const { id: documentId } = useParams();
 
@@ -121,14 +122,15 @@ export default function Editor() {
       if (!socket || !quill) return;
 
       const handler = (delta, oldDelta, source) => {
-        if (source !== "user") return;
+        handleEdits();
 
+        if (source !== "user") return;
         socket.emit("send-changes", delta);
       };
 
-      quill.on("text-change", handler);
+      quill.on("editor-change", handler);
 
-      return (_) => quill.off("text-change", handler);
+      return (_) => quill.off("editor-change", handler);
     },
     [socket, quill],
   );
@@ -157,17 +159,21 @@ export default function Editor() {
     [quill, quillContent],
   );
 
-  return !error ? (
-    <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
-      <EditorHeader saved={saved} />
-      <main className="flex w-full flex-grow overflow-auto whitespace-nowrap">
-        <div className="mx-auto w-max">
-          <EditorToolbar />
-          <EditorPage />
+  return (
+    <Loader>
+      {!error ? (
+        <div className="flex h-screen max-h-screen w-screen flex-col overflow-hidden bg-[#F0F0F0]">
+          <EditorHeader saved={saved} />
+          <main className="flex w-full flex-grow overflow-auto whitespace-nowrap">
+            <div className="mx-auto w-max">
+              <EditorToolbar />
+              <EditorPage />
+            </div>
+          </main>
         </div>
-      </main>
-    </div>
-  ) : (
-    <div className="text-red-500">{error}</div>
+      ) : (
+        <div className="text-red-500">{error}</div>
+      )}
+    </Loader>
   );
 }
