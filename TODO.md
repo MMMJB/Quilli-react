@@ -1,0 +1,25 @@
+- [ ] Prevent format clear on backspace
+  - [ ] With range
+  - [ ] Without range
+- [ ] Finish profile settings
+  - [ ] Profile picture
+  - [ ] Name
+  - [ ] Email confirmation
+- [ ] Finish document settings
+  - [ ] Title
+  - [ ] Type
+  - [ ] Last edited
+- [ ] Finish formatting options
+  - [ ] Line height
+  - [ ] Font
+  - [ ] Image
+  - [ ] Background image
+- [ ] Finish tools
+  - [ ] Spellcheck
+  - [ ] Dictionary / synonyms
+  - [ ] Rhymes
+  - [ ] Syllables
+  - [ ] Rhyme scheme
+  - [ ] Meter detecter
+- [ ] Fix socketio improper style syncing
+- [ ] Add new page on text overflow

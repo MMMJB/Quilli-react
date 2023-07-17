@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
@@ -121,16 +121,16 @@ export default function Editor() {
     (_) => {
       if (!socket || !quill) return;
 
-      const handler = (delta, oldDelta, source) => {
+      const editorChangeHandler = (delta, oldDelta, source) => {
         handleEdits();
 
         if (source !== "user") return;
         socket.emit("send-changes", delta);
       };
 
-      quill.on("editor-change", handler);
+      quill.on("editor-change", editorChangeHandler);
 
-      return (_) => quill.off("editor-change", handler);
+      return (_) => quill.off("editor-change", editorChangeHandler);
     },
     [socket, quill],
   );

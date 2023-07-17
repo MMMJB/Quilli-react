@@ -77,6 +77,10 @@
   #PREVIEW * {
     cursor: pointer;
   }
+
+  .word {
+    background-color: theme("accentColor.brand-lgt");
+  }
 }
 
 @layer utilities {

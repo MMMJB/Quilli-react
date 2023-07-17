@@ -42,9 +42,8 @@ export function EditorProvider({ children }) {
     {},
     ...bindingTargets.map((b) => ({
       [b]: {
+        collapsed: true,
         handler: (range, context) => {
-          if (range.length > 0) return;
-
           dispatchFormat({ type: "TOGGLE", format: b });
 
           return true;
@@ -52,6 +51,20 @@ export function EditorProvider({ children }) {
       },
     })),
   );
+
+  // bindings["list autofill"] = {
+  //   key: " ",
+  //   collapsed: true,
+  //   format: {
+  //     word: false,
+  //   },
+  //   prefix: /^.+$/,
+  //   handler: (range, context) => {
+  //     const f = quill.formatText(0, 3, "word", true);
+
+  //     return false;
+  //   },
+  // };
 
   const changeFormat = (property, newValue) => {
     quill.format(property, newValue);
@@ -67,6 +80,7 @@ export function EditorProvider({ children }) {
 
   useEffect((_) => {
     const editor = document.createElement("div");
+    editor.style.setProperty("font-size", "12px");
     setEditor(editor);
 
     const q = new Quill(editor, {
