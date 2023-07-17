@@ -599,8 +599,42 @@ video {
   cursor: pointer;
 }
 
+.\!word {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
 .word {
+  position: relative;
+  z-index: 0;
+}
+
+.\!word::before {
+  content: "" !important;
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #43CEA2 !important;
+  opacity: 0.25 !important;
+  z-index: -1 !important;
+}
+
+.word::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: #43CEA2;
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.\!word:hover::before {
+  opacity: 0.75 !important;
+}
+
+.word:hover::before {
+  opacity: 0.75;
 }
 
 .static{

@@ -15,27 +15,14 @@ export default function EditorPage() {
   const Parchment = Quill.import("parchment");
 
   class WordBlot extends Inline {
-    static create(value) {
-      const node = super.create(value);
-      node.__id = value;
-
-      return node;
+    static create() {
+      return super.create();
     }
 
-    static formats(domNode) {
-      const blot = Parchment.find(domNode);
-
-      if (
-        blot &&
-        blot.parent &&
-        blot.parent.children &&
-        blot.parent.children.head !== blot
-      )
-        return domNode.__id;
+    static formats() {
+      return true;
     }
   }
-
-  const generateWordId = (_) => `rand-${Math.floor(Math.random() * 1e9)}`;
 
   WordBlot.blotName = "word";
   WordBlot.className = "word";
@@ -45,29 +32,64 @@ export default function EditorPage() {
 
   Quill.register(WordBlot, true);
 
+  const insertIsValid = (insert) => {
+    if (!insert) return false;
+
+    return insert.split("").every((char) => char.match(/^[a-z]+$/i));
+  };
+
   useEffect(
     (_) => {
       if (!quill) return;
 
-      quill.keyboard.bindings[32] = [
-        {
-          key: " ",
-          collapsed: true, // Collapsed selection (selection.length === 0)
-          format: { word: false },
-          prefix: /^.+$/, // Preceded by at least one character
-          handler: (range, context) => {
-            const index = context.prefix.lastIndexOf(" ") + 1;
-            const length = range.index - index;
+      // quill.keyboard.bindings[32] = [
+      //   {
+      //     key: " ",
+      //     collapsed: true, // Collapsed selection (selection.length === 0)
+      //     format: { word: false },
+      //     prefix: /^.+$/, // Preceded by at least one character
+      //     handler: (_, context) => {
+      //       const preceding = quill.getText().substring(0, context.offset);
 
-            console.log(context.prefix);
+      //       const index = preceding.lastIndexOf(" ") + 1;
+      //       const length = context.offset - index;
 
-            quill.formatText(index, length, "word", generateWordId());
-            quill.format("word", false);
+      //       quill.formatText(index, length, "word", true);
+      //       quill.format("word", false);
 
-            return true;
-          },
-        },
-      ];
+      //       return true;
+      //     },
+      //   },
+      //   {
+      //     key: " ",
+      //     collapsed: true,
+      //     format: { word: true },
+      //     prefix: /^.+$/,
+      //     handler: (_, context) => {
+      //       quill.format("word", false);
+
+      //       return true;
+      //     },
+      //   },
+      // ];
+
+      const handleWordEdit = (delta, oldDelta, source) => {
+        if (source !== "user") return;
+        console.log(delta);
+
+        const emptyLine = delta.ops.length == 1;
+
+        const insert = emptyLine ? delta.ops[0].insert : delta.ops[1].insert;
+        const index = emptyLine ? 0 : delta.ops[0].retain;
+
+        if (!insert) return;
+
+        quill.formatText(index, 1, "word", insertIsValid(insert));
+      };
+
+      quill.on("text-change", handleWordEdit);
+
+      return (_) => quill.off("text-change", handleWordEdit);
     },
     [quill],
   );
