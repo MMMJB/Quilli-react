@@ -23,3 +23,4 @@
   - [ ] Meter detecter
 - [ ] Fix socketio improper style syncing
 - [ ] Add new page on text overflow
+- [ ] Add tooltips for all toolbar items

@@ -4,6 +4,8 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Quill from "quill";
 
+import onWordHover from "../Modules/Syllables";
+
 const Size = Quill.import("attributors/style/size");
 Size.whitelist = Array.from({ length: 11 }, (_, i) => `${i * 6}px`).slice(1);
 Quill.register(Size, true);
@@ -33,9 +35,11 @@ export default function EditorPage() {
   Quill.register(WordBlot, true);
 
   const insertIsValid = (insert) => {
-    if (!insert) return false;
-
-    return insert.split("").every((char) => char.match(/^[a-z]+$/i));
+    return (
+      (insert.length > 1
+        ? insert.split("").every((char) => char.match(/^[a-z]+$/i))
+        : insert.match(/^[a-z]+$/i)) !== null
+    );
   };
 
   useEffect(
@@ -73,9 +77,8 @@ export default function EditorPage() {
       //   },
       // ];
 
-      const handleWordEdit = (delta, oldDelta, source) => {
+      const handleWordEdit = (delta, _, source) => {
         if (source !== "user") return;
-        console.log(delta);
 
         const emptyLine = delta.ops.length == 1;
 
@@ -84,7 +87,7 @@ export default function EditorPage() {
 
         if (!insert) return;
 
-        quill.formatText(index, 1, "word", insertIsValid(insert));
+        quill.formatText(index, insert.length, "word", insertIsValid(insert));
       };
 
       quill.on("text-change", handleWordEdit);
@@ -98,8 +101,10 @@ export default function EditorPage() {
     (wrapper) => {
       if (!wrapper || !editor) return;
       wrapper.innerHTML = "";
+      wrapper.removeEventListener("mousemove", onWordHover);
 
       wrapper.append(editor);
+      wrapper.addEventListener("mousemove", onWordHover);
     },
     [editor],
   );
