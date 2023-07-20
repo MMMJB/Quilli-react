@@ -12,6 +12,15 @@ const Font = Quill.import("formats/font");
 Font.whitelist = Array.from(fonts, (f) => f.toLowerCase().replaceAll(" ", "-"));
 Quill.register(Font, true);
 
+const customStyles = document.createElement("style");
+document.head.appendChild(customStyles);
+
+const sheet = customStyles.sheet;
+
+Font.whitelist.forEach((f) => {
+  sheet.insertRule(`.ql-font-${f} {font-family:var(--${f})}`, 0);
+});
+
 const Size = Quill.import("attributors/style/size");
 Size.whitelist = Array.from({ length: 11 }, (_, i) => `${i * 6}px`).slice(1);
 Quill.register(Size, true);
@@ -20,7 +29,6 @@ export default function EditorPage() {
   const { quill, pageColor, editor } = useEditor();
 
   const Inline = Quill.import("blots/inline");
-  const Parchment = Quill.import("parchment");
 
   class WordBlot extends Inline {
     static create() {

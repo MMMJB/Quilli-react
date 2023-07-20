@@ -70,6 +70,7 @@ export function EditorProvider({ children }) {
   useEffect((_) => {
     const editor = document.createElement("div");
     editor.style.setProperty("font-size", "12px");
+    editor.style.setProperty("font-family", "var(--helvetica)");
     setEditor(editor);
 
     const q = new Quill(editor, {

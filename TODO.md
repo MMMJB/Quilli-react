@@ -11,8 +11,8 @@
   - [ ] Last edited
 - [ ] Finish formatting options
   - [ ] Line height
-  - [ ] Font
-    - [ ] Editor modal UI design
+  - [x] Font
+    - [x] Editor modal UI design
   - [ ] Image
   - [ ] Background image
 - [ ] Properly sync all formats with firebase

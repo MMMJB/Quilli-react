@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import { io } from "socket.io-client";
 import Quill from "quill";
-import "quill/dist/quill.snow.css";
 
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { database, SAVE_INTERVAL_MS } from "../../Utils/firebase-config";

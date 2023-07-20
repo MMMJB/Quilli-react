@@ -10,36 +10,43 @@ export default function FontModal() {
 
   const { quill, format, changeFormat } = useEditor();
 
-  useEffect(
-    (_) => {
-      if (!quill) return;
+  useEffect((_) => {
+    if (!quill || !format) return;
 
-      changeFormat("font", selectedFont);
-    },
-    [selectedFont],
-  );
+    if (!format.font) setSelectedFont("Helvetica");
+    else setSelectedFont(varToFont(format.font));
+  }, []);
 
-  useEffect(
-    (_) => {
-      if (!quill || !format) return;
+  const fontToVar = (font, shorten) =>
+    shorten
+      ? font.toLowerCase().replaceAll(" ", "-")
+      : `var(--${font.toLowerCase().replaceAll(" ", "-")})`;
 
-      if (format.font && format.font !== selectedFont)
-        setSelectedFont(format.font);
-    },
-    [format],
-  );
-
-  const fontToVar = (font) =>
-    `var(--${font.toLowerCase().replaceAll(" ", "-")})`;
+  const varToFont = (v) =>
+    fonts[
+      Array.from(fonts, (f) => f.toLowerCase()).indexOf(
+        v.toLowerCase().replaceAll("-", " "),
+      )
+    ];
 
   const hoverHandler = (font) => {
     if (previewFont !== font) setPreviewFont(font);
   };
 
+  const selectNewFont = (_) => {
+    if (!quill) return;
+
+    changeFormat("font", fontToVar(previewFont, true));
+    setSelectedFont(previewFont);
+  };
+
   return (
     <div className="flex w-[600px] max-w-[50%] flex-col rounded-lg bg-white shadow-xl">
       <div className="flex h-20 w-full items-center rounded-t-lg bg-white px-8 py-6 text-xl text-editor">
-        <span style={{ fontFamily: fontToVar(previewFont) }}>
+        <span
+          className="overflow-hidden text-ellipsis whitespace-nowrap"
+          style={{ fontFamily: fontToVar(previewFont) }}
+        >
           The quick brown fox jumps over the lazy dog.
         </span>
       </div>
@@ -59,7 +66,7 @@ export default function FontModal() {
           return (
             <li
               onMouseOver={(_) => hoverHandler(font)}
-              onClick={(_) => setSelectedFont(font)}
+              onClick={selectNewFont}
               style={{
                 fontFamily: fontToVar(font),
               }}
