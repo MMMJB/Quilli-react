@@ -12,8 +12,10 @@
 - [ ] Finish formatting options
   - [ ] Line height
   - [ ] Font
+    - [ ] Editor modal UI design
   - [ ] Image
   - [ ] Background image
+- [ ] Properly sync all formats with firebase
 - [ ] Finish tools
   - [ ] Spellcheck
   - [ ] Dictionary / synonyms
@@ -22,5 +24,7 @@
   - [ ] Rhyme scheme
   - [ ] Meter detecter
 - [ ] Fix socketio improper style syncing
+- [ ] Save on style update
 - [ ] Add new page on text overflow
 - [ ] Add tooltips for all toolbar items
+- [ ] Add material icons to spritesheet

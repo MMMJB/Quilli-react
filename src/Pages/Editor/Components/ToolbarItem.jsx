@@ -15,19 +15,19 @@ export default function EditorToolbarItem({ icon, items, index }) {
   const [active, setActive] = useState(false);
 
   return (
-    <li className="relative [direction:rtl]" style={{ zIndex: 4 - index }}>
+    <li className="[direction:rtl]" style={{ zIndex: index }}>
       <div
         onClick={(_) => setActive((p) => !p)}
         id="POPOUT-COVER"
         className={`${
           active ? "active" : ""
-        } relative my-6 w-max cursor-pointer rounded-full bg-white p-4 shadow-secondary transition-all`}
+        } relative z-10 my-6 w-max cursor-pointer rounded-full bg-white p-4 shadow-secondary transition-all`}
       >
         <Icon icon={icon} size={16} />
       </div>
       <div
         id="POPOUT-WRAPPER"
-        className="absolute top-1/2 -z-10 mr-6 flex h-[101%] -translate-y-1/2 items-center overflow-hidden overflow-x-hidden pl-2"
+        className="-mb-[72px] mr-6 flex -translate-y-[72px] items-center overflow-x-hidden py-[5px] pl-2"
       >
         <ul
           onClick={(e) => setActive(!e.target.classList.contains("ACTIVE"))}
@@ -36,7 +36,7 @@ export default function EditorToolbarItem({ icon, items, index }) {
         >
           {items.map((item, i) => {
             return item.type == "modal" ? (
-              <EditorToolbarModal key={item.tooltip} icon={item.icon} />
+              <EditorToolbarModal key={item.tooltip} data={item} />
             ) : item.type == "button" ? (
               <EditorToolbarButton key={item.tooltip} data={item} />
             ) : item.type == "value" ? (

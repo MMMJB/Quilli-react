@@ -4,7 +4,13 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Quill from "quill";
 
+import fonts from "../../../Utils/fonts";
+
 import onWordHover from "../Modules/Syllables";
+
+const Font = Quill.import("formats/font");
+Font.whitelist = Array.from(fonts, (f) => f.toLowerCase().replaceAll(" ", "-"));
+Quill.register(Font, true);
 
 const Size = Quill.import("attributors/style/size");
 Size.whitelist = Array.from({ length: 11 }, (_, i) => `${i * 6}px`).slice(1);

@@ -18,7 +18,7 @@ export default function Loader({ children }) {
     <>
       <div
         id="LOADER"
-        className={`z-50 h-screen w-screen bg-white ${
+        className={`z-50 h-screen w-screen cursor-wait bg-white ${
           !loading ? "hidden touch-none" : ""
         }`}
       ></div>

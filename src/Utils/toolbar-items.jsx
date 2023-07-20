@@ -1,3 +1,5 @@
+import FontModal from "../Pages/Editor/Components/FontModal";
+
 export default [
   {
     icon: 23,
@@ -44,6 +46,7 @@ export default [
         tooltip: "Font Family",
         targetFormat: "font",
         icon: 0,
+        children: <FontModal />,
       },
     ],
   },

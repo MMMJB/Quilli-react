@@ -26,7 +26,14 @@ export default function Editor() {
   const [saved, setSaved] = useState(true);
 
   const { currentUser } = useAuth();
-  const { quill, quillContent, handleEdits } = useEditor();
+  const {
+    quill,
+    quillContent,
+    handleEdits,
+    modalOpen,
+    setModalOpen,
+    modalContents,
+  } = useEditor();
 
   const { id: documentId } = useParams();
 
@@ -159,6 +166,11 @@ export default function Editor() {
     [quill, quillContent],
   );
 
+  const handleModalClick = (e) => {
+    if (e.target == document.getElementById("MODAL-WRAPPER"))
+      setModalOpen(false);
+  };
+
   return (
     <Loader>
       {!error ? (
@@ -170,6 +182,15 @@ export default function Editor() {
               <EditorPage />
             </div>
           </main>
+          {modalOpen && (
+            <div
+              id="MODAL-WRAPPER"
+              onClick={handleModalClick}
+              className="absolute z-50 grid h-full w-full animate-fade-in place-items-center bg-black/25"
+            >
+              {modalContents}
+            </div>
+          )}
         </div>
       ) : (
         <div className="text-red-500">{error}</div>

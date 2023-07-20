@@ -34,11 +34,16 @@ export default {
           from: { "background-position": "100% 0" },
           to: { "background-position": "0 0" },
         },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
       animation: {
         cta: "cta 700ms steps(29) forwards",
         "cta-rev": "cta-rev 700ms steps(29) forwards",
         "scroll-left": "scroll-left 500ms linear infinite",
+        "fade-in": "fade-in 500ms ease-out forwards",
       },
       boxShadow: {
         default: "0px 2px 4px 2px rgba(60, 64, 67, .149)",

@@ -7,6 +7,7 @@ const initialFormats = {
   italic: false,
   underline: false,
   align: false,
+  font: "Helvetica",
 };
 
 const reducer = (state, action) => {
@@ -34,6 +35,8 @@ export function EditorProvider({ children }) {
   const [editor, setEditor] = useState();
   const [loading, setLoading] = useState(true);
   const [pageColor, setPageColor] = useState("#FFFFFD");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContents, setModalContents] = useState("");
 
   const [format, dispatchFormat] = useReducer(reducer, initialFormats);
 
@@ -51,20 +54,6 @@ export function EditorProvider({ children }) {
       },
     })),
   );
-
-  // bindings["list autofill"] = {
-  //   key: " ",
-  //   collapsed: true,
-  //   format: {
-  //     word: false,
-  //   },
-  //   prefix: /^.+$/,
-  //   handler: (range, context) => {
-  //     const f = quill.formatText(0, 3, "word", true);
-
-  //     return false;
-  //   },
-  // };
 
   const changeFormat = (property, newValue) => {
     quill.format(property, newValue);
@@ -103,6 +92,10 @@ export function EditorProvider({ children }) {
     changeFormat,
     pageColor,
     setPageColor,
+    modalOpen,
+    setModalOpen,
+    modalContents,
+    setModalContents,
   };
 
   return (

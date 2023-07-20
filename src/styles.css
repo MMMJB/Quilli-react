@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --amatic-sc: "Amatic SC", cursive;
+  --caveat: "Caveat", cursive;
+  --comfortaa: "Comfortaa", cursive;
+  --happy-monkey: "Happy Monkey", cursive;
+  --lobster: "Lobster", cursive;
+
+  --courier-prime: "Courier Prime", monospace;
+  --dm-mono: "DM Mono", monospace;
+  --roboto-mono: "Roboto Mono", monospace;
+
+  --eb-garamond: "EB Garamond", serif;
+  --gilda-display: "Gilda Display", serif;
+  --merriweather: "Merriweather", serif;
+  --playfair-display: "Playfair Display", serif;
+
+  --arial: Arial, sans-serif;
+  --helvetica: Helvetica, sans-serif;
+  --inter: "Inter", sans-serif;
+  --montserrat: "Montserrat", sans-serif;
+  --open-sans: "Open Sans", sans-serif;
+  --poppins: "Poppins", sans-serif;
+  --quicksand: "Quicksand", sans-serif;
+  --roboto: "Roboto", sans-serif;
+}
+
 @layer base {
   #HOME h1,
   #HOME h2,

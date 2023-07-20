@@ -96,7 +96,7 @@ export default function User() {
 
   return (
     <>
-      <div className="w-64 overflow-hidden rounded-xl bg-gray-200 shadow-lg">
+      <div className="w-64 overflow-hidden rounded-xl bg-gray-50 shadow-lg">
         {!updatingProfile ? (
           <>
             <div className="relative z-10 flex w-full rounded-xl bg-white bg-[url('/images/corner_waves.svg')] bg-cover bg-right-bottom font-sans shadow-secondary">
@@ -108,7 +108,7 @@ export default function User() {
                 </span>
               </div>
             </div>
-            <ul className="relative bottom-2 flex w-full flex-col rounded-b-xl border-4 border-gray-200 bg-white font-roboto">
+            <ul className="flex w-full flex-col rounded-b-xl bg-white font-roboto shadow-sm">
               {menuButtons.map((btn, i) => {
                 return (
                   <UserMenuButton
@@ -122,7 +122,7 @@ export default function User() {
             </ul>
             <button
               onClick={handleLogout}
-              className="relative left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs text-editor-lgt transition-colors hover:text-editor"
+              className="relative left-1/2 my-3 -translate-x-1/2 text-xs text-editor-lgt transition-colors hover:text-editor"
             >
               Sign Out
             </button>
