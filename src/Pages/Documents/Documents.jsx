@@ -51,6 +51,14 @@ export default function Documents() {
     e.preventDefault();
   };
 
+  const openDoc = (e, doc) => {
+    if (
+      e.target.getAttribute("id") == "PREVIEW" ||
+      e.target.parentNode.getAttribute("id") == "DOCS"
+    )
+      navigate(`/documents/${doc.id}`);
+  };
+
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="relative flex w-full justify-center bg-salmon">
@@ -72,14 +80,13 @@ export default function Documents() {
         />
       </header>
       <main className="relative flex w-full flex-grow justify-center px-16 py-8">
-        <ul className="relative grid grid-cols-4 gap-8">
+        <ul id="DOCS" className="relative grid grid-cols-4 gap-8">
           {docs.length > 0 ? (
             docs.map((doc, i) => {
-              // return <Doc title={doc.title} type={doc.type} meter={doc.meter} key={i} />
               return (
                 <Doc
-                  onClick={(_) => navigate(`/documents/${doc.id}`)}
-                  data={{ title: doc.title, content: doc.content }}
+                  onClick={(e) => openDoc(e, doc)}
+                  data={{ title: doc.title, content: doc.content, id: doc.id }}
                   key={doc.id}
                 />
               );

@@ -7,7 +7,9 @@
   - [ ] Email confirmation
 - [ ] Finish document settings
   - [ ] Title
+    - [ ] Search by title
   - [ ] Type
+  - [ ] Delete
   - [ ] Last edited
 - [ ] Finish formatting options
   - [ ] Line height
@@ -28,3 +30,4 @@
 - [ ] Add new page on text overflow
 - [ ] Add tooltips for all toolbar items
 - [ ] Add material icons to spritesheet
+- [ ] Fix new document history bug
