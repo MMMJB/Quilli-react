@@ -115,7 +115,7 @@
     border-radius: 2px;
   }
 
-  .word:hover::before {
+  /* .word:hover::before {
     content: attr(data-syllables);
     position: absolute;
     bottom: 0.5em;
@@ -125,7 +125,7 @@
     left: 50%;
     translate: -50% -50%;
     z-index: 999;
-  }
+  } */
 }
 
 @layer utilities {

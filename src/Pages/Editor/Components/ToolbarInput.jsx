@@ -20,7 +20,7 @@ export default function EditorToolbarInput({ data }) {
     (_) => {
       if (!quill) return;
 
-      changeFormat(data.targetFormat, `${size}px`);
+      changeFormat(data.targetFormat, `${size}px`, "user");
     },
     [quill, size],
   );

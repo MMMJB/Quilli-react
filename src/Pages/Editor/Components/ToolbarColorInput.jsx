@@ -32,9 +32,9 @@ export default function EditorToolbarColorInput({ data }) {
         data.hasOwnProperty("targetFormat") &&
         (data.toggleable ? active : true)
       )
-        changeFormat(data.targetFormat, selectedColor);
+        changeFormat(data.targetFormat, selectedColor, "user");
       else if (data.toggleable && !active)
-        changeFormat(data.targetFormat, false);
+        changeFormat(data.targetFormat, false, "user");
     },
     [quill, active, selectedColor],
   );

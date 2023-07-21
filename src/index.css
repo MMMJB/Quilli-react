@@ -610,17 +610,17 @@ video {
   border-radius: 2px;
 }
 
-.word:hover::before {
-  content: attr(data-syllables);
-  position: absolute;
-  bottom: 0.5em;
-  color: white;
-  background-color: black;
-  padding: 0.15em 0.25em;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: 999;
-}
+/* .word:hover::before {
+    content: attr(data-syllables);
+    position: absolute;
+    bottom: 0.5em;
+    color: white;
+    background-color: black;
+    padding: 0.15em 0.25em;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 999;
+  } */
 
 .static{
   position: static;
@@ -1820,11 +1820,6 @@ video {
 
 .outline-gray-border{
   outline-color: #DADCE0;
-}
-
-.blur{
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .backdrop-blur-sm{

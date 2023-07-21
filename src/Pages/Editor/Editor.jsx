@@ -144,8 +144,8 @@ export default function Editor() {
 
         if (type == "selection-change" && !args[0]) return;
         else if (type === "text-change") {
-          handleEdits(type, source);
-          socket.emit("send-changes", args[0]);
+          handleEdits();
+          if (source === "user") socket.emit("send-changes", args[0]);
         }
       };
 

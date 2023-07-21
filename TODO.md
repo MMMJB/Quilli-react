@@ -27,7 +27,7 @@
   - [ ] Syllables
   - [ ] Rhyme scheme
   - [ ] Meter detecter
-- [ ] Fix socketio improper style syncing
+- [x] Fix socketio improper style syncing
 - [x] Save on style update
 - [ ] Add new page on text overflow
 - [ ] Add tooltips for all toolbar items

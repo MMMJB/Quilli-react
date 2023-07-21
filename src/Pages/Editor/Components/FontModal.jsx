@@ -8,13 +8,16 @@ export default function FontModal() {
   const [selectedFont, setSelectedFont] = useState("Helvetica");
   const [previewFont, setPreviewFont] = useState(selectedFont);
 
-  const { quill, format, changeFormat } = useEditor();
+  const { quill, changeFormat } = useEditor();
 
   useEffect((_) => {
-    if (!quill || !format) return;
+    if (!quill) return;
 
-    if (!format.font) setSelectedFont("Helvetica");
-    else setSelectedFont(varToFont(format.font));
+    quill.focus();
+    const currentFont = quill.getFormat().font;
+
+    if (!currentFont) setSelectedFont("Helvetica");
+    else setSelectedFont(varToFont(currentFont));
   }, []);
 
   const fontToVar = (font, shorten) =>
@@ -36,7 +39,7 @@ export default function FontModal() {
   const selectNewFont = (_) => {
     if (!quill) return;
 
-    changeFormat("font", fontToVar(previewFont, true));
+    changeFormat("font", fontToVar(previewFont, true), "user");
     setSelectedFont(previewFont);
   };
 

@@ -56,17 +56,16 @@ export function EditorProvider({ children }) {
     })),
   );
 
-  const changeFormat = (property, newValue) => {
-    quill.format(property, newValue);
+  const changeFormat = (property, newValue, source) => {
+    quill.format(property, newValue, source || "api");
   };
 
-  const handleEdits = (type, source) => {
+  const handleEdits = (_) => {
     const f = quill.getFormat();
 
     dispatchFormat({ type: "SETALL", formats: f });
 
-    if (source === "user" && type === "text-change")
-      setQuillContent(JSON.stringify(quill.getContents().ops));
+    setQuillContent(JSON.stringify(quill.getContents().ops));
   };
 
   useEffect((_) => {
