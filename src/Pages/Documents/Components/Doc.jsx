@@ -1,13 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 
 import { useAuth } from "../../../Contexts/AuthContext";
 
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { database } from "../../../Utils/firebase-config";
 
 import Quill from "quill";
 
 export default function Doc({ onClick, data }) {
+  const titleRef = useRef();
+
+  const [title, setTitle] = useState(data.title);
   const [settingsMenuOpen, setSettingsMenuOpen] = useState(false);
   const [docExists, setDocExists] = useState(true);
   const [error, setError] = useState();
@@ -16,10 +19,26 @@ export default function Doc({ onClick, data }) {
 
   const Delta = Quill.import("delta");
 
-  const title = data.title;
   const type = data.type;
   const meter = data.meter;
   const content = new Delta(data.content);
+
+  const getDocRef = (_) =>
+    doc(database, "users", currentUser.uid, "docsData", data.id);
+
+  const renameDoc = async (e) => {
+    const input = e.target;
+
+    input.setAttribute("disabled", "true");
+
+    try {
+      await updateDoc(getDocRef(), {
+        title: input.value,
+      });
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const wrapperRef = useCallback((wrapper) => {
     if (!wrapper) return;
@@ -42,26 +61,23 @@ export default function Doc({ onClick, data }) {
       action: async (_) => {
         if (!currentUser) return;
 
-        const docRef = doc(
-          database,
-          "user",
-          currentUser.uid,
-          "docsData",
-          data.id,
-        );
-
         try {
-          await deleteDoc(docRef);
+          await deleteDoc(getDocRef());
           setDocExists(false);
-        } catch (err) {
-          setError(err.message);
+        } catch {
+          setError("Failed to delete document.");
         }
       },
     },
     {
       icon: "edit",
       value: "Rename",
-      action: (_) => {},
+      action: (_) => {
+        titleRef.current.removeAttribute("disabled");
+        titleRef.current.focus();
+
+        setSettingsMenuOpen(false);
+      },
     },
     {
       icon: "open_in_new",
@@ -119,15 +135,20 @@ export default function Doc({ onClick, data }) {
             ></div>
           </div>
           <div className="text-sans border-t-border-gray-border cursor-auto border-t-[1px] p-3">
-            <h4 className="overflow-hidden text-ellipsis whitespace-nowrap text-sm/[16px] font-medium text-editor">
-              {title}
-            </h4>
+            <input
+              ref={titleRef}
+              value={title}
+              onInput={(e) => setTitle(e.target.value)}
+              onBlur={renameDoc}
+              disabled
+              className="block overflow-hidden text-ellipsis whitespace-nowrap bg-transparent text-sm/[16px] font-medium text-editor"
+            />
             <span className="inline-block text-xs/[14px] text-editor-lgt">{`${
               type || "Poem"
             }${meter ? ` - ${meter}` : ""}`}</span>
           </div>
         </li>
-        {error && <div className="text-red-500">{error}</div>}
+        {error && <li className="text-red-500">{error}</li>}
       </>
     )
   );

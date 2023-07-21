@@ -32,6 +32,7 @@ export default function Editor() {
     modalOpen,
     setModalOpen,
     modalContents,
+    setDocTitle,
   } = useEditor();
 
   const { id: documentId } = useParams();
@@ -100,6 +101,8 @@ export default function Editor() {
           quill.setContents(new Delta(data.content));
           lastSavedContent.current = quill.getText();
           quill.enable();
+
+          setDocTitle(data.title);
 
           console.log(`Successfully loaded document ${documentId}.`);
         } else setError(`Could not find document ${documentId}.`);

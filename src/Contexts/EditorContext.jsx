@@ -37,6 +37,7 @@ export function EditorProvider({ children }) {
   const [pageColor, setPageColor] = useState("#FFFFFD");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContents, setModalContents] = useState("");
+  const [docTitle, setDocTitle] = useState("");
 
   const [format, dispatchFormat] = useReducer(reducer, initialFormats);
 
@@ -97,6 +98,8 @@ export function EditorProvider({ children }) {
     setModalOpen,
     modalContents,
     setModalContents,
+    docTitle,
+    setDocTitle,
   };
 
   return (

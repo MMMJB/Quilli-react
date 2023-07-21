@@ -6,11 +6,12 @@
   - [ ] Name
   - [ ] Email confirmation
 - [ ] Finish document settings
-  - [ ] Title
+  - [x] Title
     - [ ] Search by title
   - [ ] Type
-  - [ ] Delete
+  - [x] Delete
   - [ ] Last edited
+    - [ ] Sort by last edited
 - [ ] Finish formatting options
   - [ ] Line height
   - [x] Font

@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import { useEditor } from "../../../Contexts/EditorContext";
+import { useAuth } from "../../../Contexts/AuthContext";
+
+import { doc, updateDoc } from "firebase/firestore";
+import { database } from "../../../Utils/firebase-config";
 
 import AccountButton from "../../../Components/Account/AccountButton";
 import WaveLoader from "../../../Components/WaveLoader";
 
 export default function EditorHeader({ saved }) {
+  const [title, setTitle] = useState("Loading document...");
+
+  const { docTitle } = useEditor();
+  const { currentUser } = useAuth();
+
+  const renameDoc = async (e) => {
+    if (!currentUser || !docTitle) return;
+
+    const docId = window.location.pathname.substring(11);
+    const docRef = doc(database, "users", currentUser.uid, "docsData", docId);
+
+    await updateDoc(docRef, {
+      title: e.target.value,
+    });
+  };
+
+  useEffect(
+    (_) => {
+      if (!docTitle) return;
+
+      setTitle(docTitle);
+    },
+    [docTitle],
+  );
+
   return (
     <div
       id="HEADER"
@@ -16,9 +47,10 @@ export default function EditorHeader({ saved }) {
       />
       <div className="mr-auto flex flex-col">
         <input
-          defaultValue="New Document"
+          value={title}
+          onInput={renameDoc}
           className="font-sans text-lg/[25px] text-editor focus-visible:outline-none"
-        ></input>
+        />
         <span className="cursor-default font-roboto text-sm/[16px] font-light text-editor-lgt">
           Last edited on January 29, 1845
         </span>
