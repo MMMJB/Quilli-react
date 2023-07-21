@@ -130,11 +130,15 @@ export default function Editor() {
     (_) => {
       if (!socket || !quill) return;
 
-      const editorChangeHandler = (delta, oldDelta, source) => {
+      const editorChangeHandler = (type, ...args) => {
+        const source = args[2];
+        if (source !== "user") return;
+
+        if (type == "selection-change" && !args[0]) return;
+
         handleEdits();
 
-        if (source !== "user") return;
-        socket.emit("send-changes", delta);
+        if (type === "text-change") socket.emit("send-changes", args[0]);
       };
 
       quill.on("editor-change", editorChangeHandler);

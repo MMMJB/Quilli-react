@@ -27,8 +27,9 @@
   - [ ] Rhyme scheme
   - [ ] Meter detecter
 - [ ] Fix socketio improper style syncing
-- [ ] Save on style update
+- [ ] Save on style update => **SAVE DELTA INSTEAD OF TEXT CONTENT**
 - [ ] Add new page on text overflow
 - [ ] Add tooltips for all toolbar items
 - [ ] Add material icons to spritesheet
 - [ ] Fix new document history bug
+- [x] Fix Quill focus bug

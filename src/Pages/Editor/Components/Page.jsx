@@ -14,11 +14,14 @@ Quill.register(Font, true);
 
 const customStyles = document.createElement("style");
 document.head.appendChild(customStyles);
-
 const sheet = customStyles.sheet;
 
 Font.whitelist.forEach((f) => {
   sheet.insertRule(`.ql-font-${f} {font-family:var(--${f})}`, 0);
+});
+
+["center", "right", "justify"].forEach((a) => {
+  sheet.insertRule(`.ql-align-${a} {text-align: ${a}}`);
 });
 
 const Size = Quill.import("attributors/style/size");

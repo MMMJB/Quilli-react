@@ -34,6 +34,7 @@ export default function EditorToolbarButton({ data }) {
       data.targetFormat,
       data.hasOwnProperty("formatValue") ? data.formatValue : !highlighted,
     );
+
     if (data.toggleable) setHighlighted((p) => !p);
   };
 

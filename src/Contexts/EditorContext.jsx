@@ -81,6 +81,8 @@ export function EditorProvider({ children }) {
     q.disable();
     q.setText("Loading document...");
 
+    const editable = editor.querySelector(".ql-editor");
+
     setQuill(q);
     setLoading(false);
   }, []);

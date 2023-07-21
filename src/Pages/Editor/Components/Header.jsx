@@ -12,7 +12,7 @@ import WaveLoader from "../../../Components/WaveLoader";
 export default function EditorHeader({ saved }) {
   const [title, setTitle] = useState("Loading document...");
 
-  const { docTitle } = useEditor();
+  const { docTitle, quill } = useEditor();
   const { currentUser } = useAuth();
 
   const renameDoc = async (e) => {
@@ -48,7 +48,8 @@ export default function EditorHeader({ saved }) {
       <div className="mr-auto flex flex-col">
         <input
           value={title}
-          onInput={renameDoc}
+          onInput={(e) => setTitle(e.target.value)}
+          onBlur={renameDoc}
           className="font-sans text-lg/[25px] text-editor focus-visible:outline-none"
         />
         <span className="cursor-default font-roboto text-sm/[16px] font-light text-editor-lgt">
