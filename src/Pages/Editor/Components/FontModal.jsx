@@ -7,6 +7,7 @@ import { useEditor } from "../../../Contexts/EditorContext";
 export default function FontModal() {
   const [selectedFont, setSelectedFont] = useState("Helvetica");
   const [previewFont, setPreviewFont] = useState(selectedFont);
+  const [visibleFonts, setVisibleFonts] = useState([...fonts]);
 
   const { quill, changeFormat } = useEditor();
 
@@ -43,6 +44,16 @@ export default function FontModal() {
     setSelectedFont(previewFont);
   };
 
+  const searchFonts = (e) => {
+    const term = e.target.value.toLowerCase();
+
+    setVisibleFonts(
+      term == ""
+        ? [...fonts]
+        : fonts.filter((font) => font.toLowerCase().includes(term)),
+    );
+  };
+
   return (
     <div className="flex w-[600px] max-w-[50%] flex-col rounded-lg bg-white shadow-xl">
       <div className="flex h-20 w-full items-center rounded-t-lg bg-white px-8 py-6 text-xl text-editor">
@@ -62,10 +73,11 @@ export default function FontModal() {
         <input
           className="w-full bg-transparent text-sm text-editor-lgt"
           placeholder="Search fonts"
+          onInput={searchFonts}
         />
       </div>
       <ul className="flex max-h-60 flex-col overflow-y-auto pt-2">
-        {fonts.map((font, i) => {
+        {visibleFonts.map((font, i) => {
           return (
             <li
               onMouseOver={(_) => hoverHandler(font)}

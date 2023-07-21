@@ -7,7 +7,7 @@
   - [ ] Email confirmation
 - [ ] Finish document settings
   - [x] Title
-    - [ ] Search by title
+    - [x] Search by title
   - [ ] Type
   - [x] Delete
   - [ ] Last edited
@@ -16,7 +16,7 @@
   - [ ] Line height
   - [x] Font
     - [x] Editor modal UI design
-    - [ ] Search fonts
+    - [x] Search fonts
   - [ ] Image
   - [ ] Background image
 - [ ] Properly sync all formats with firebase

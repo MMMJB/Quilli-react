@@ -12,6 +12,7 @@ import { database } from "../../Utils/firebase-config";
 
 export default function Documents() {
   const [docs, setDocs] = useState([]);
+  const [visibleDocs, setVisibleDocs] = useState([]);
 
   const { currentUser } = useAuth();
 
@@ -28,16 +29,25 @@ export default function Documents() {
         );
 
         const querySnapshot = await getDocs(collectionRef);
+        const receivedDocuments = [];
         querySnapshot.forEach((doc) => {
-          setDocs((p) => [
-            ...p,
-            {
-              id: doc.id,
-              title: doc.data().title,
-              content: doc.data().content,
-            },
-          ]);
+          // setDocs((p) => [
+          //   ...p,
+          //   {
+          //     id: doc.id,
+          //     title: doc.data().title,
+          //     content: doc.data().content,
+          //   },
+          // ]);
+          receivedDocuments.push({
+            id: doc.id,
+            title: doc.data().title,
+            content: doc.data().content,
+          });
         });
+
+        setDocs([...receivedDocuments]);
+        setVisibleDocs([...receivedDocuments]);
       };
 
       getAllDocuments();
@@ -48,7 +58,13 @@ export default function Documents() {
   );
 
   const searchDocuments = (e) => {
-    e.preventDefault();
+    const term = e.target.value.toLowerCase();
+
+    setVisibleDocs(
+      term == ""
+        ? [...docs]
+        : docs.filter((doc) => doc.title.toLowerCase().includes(term)),
+    );
   };
 
   const openDoc = (e, doc) => {
@@ -69,7 +85,7 @@ export default function Documents() {
             search
           </span>
           <input
-            onSubmit={searchDocuments}
+            onInput={searchDocuments}
             type="search"
             placeholder="Search"
             className="flex-grow bg-transparent font-sans text-base text-home placeholder:text-home-lgt focus-visible:outline-none focus-visible:placeholder:text-home-lgt/50"
@@ -83,8 +99,8 @@ export default function Documents() {
       </header>
       <main className="relative flex w-full flex-grow justify-center px-16 py-8">
         <ul id="DOCS" className="relative grid grid-cols-4 gap-8">
-          {docs.length > 0 ? (
-            docs.map((doc, i) => {
+          {visibleDocs.length > 0 ? (
+            visibleDocs.map((doc, i) => {
               return (
                 <Doc
                   onClick={(e) => openDoc(e, doc)}
