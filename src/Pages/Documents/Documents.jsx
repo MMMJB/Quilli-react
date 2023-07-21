@@ -54,6 +54,8 @@ export default function Documents() {
   const openDoc = (e, doc) => {
     if (
       e.target.getAttribute("id") == "PREVIEW" ||
+      e.target.tagName == "P" ||
+      e.target.parentNode.tagName == "P" ||
       e.target.parentNode.getAttribute("id") == "DOCS"
     )
       navigate(`/documents/${doc.id}`);

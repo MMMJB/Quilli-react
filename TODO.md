@@ -16,6 +16,7 @@
   - [ ] Line height
   - [x] Font
     - [x] Editor modal UI design
+    - [ ] Search fonts
   - [ ] Image
   - [ ] Background image
 - [ ] Properly sync all formats with firebase
@@ -27,7 +28,7 @@
   - [ ] Rhyme scheme
   - [ ] Meter detecter
 - [ ] Fix socketio improper style syncing
-- [ ] Save on style update => **SAVE DELTA INSTEAD OF TEXT CONTENT**
+- [x] Save on style update
 - [ ] Add new page on text overflow
 - [ ] Add tooltips for all toolbar items
 - [ ] Add material icons to spritesheet

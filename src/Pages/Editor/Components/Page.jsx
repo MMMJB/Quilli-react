@@ -121,7 +121,7 @@ export default function EditorPage() {
       wrapper.removeEventListener("mousemove", onWordHover);
 
       wrapper.append(editor);
-      wrapper.addEventListener("mousemove", onWordHover);
+      // wrapper.addEventListener("mousemove", onWordHover);
     },
     [editor],
   );

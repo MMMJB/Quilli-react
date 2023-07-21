@@ -39,19 +39,27 @@ export default function Editor() {
 
   const Delta = Quill.import("delta");
 
-  const contentsHaveChanged = (_) =>
-    lastSavedContent.current !== quill.getText();
+  const contentsHaveChanged = (_) => {
+    // console.log(lastSavedContent.current);
+    // console.log(JSON.stringify(quill.getContents().ops));
+
+    return lastSavedContent.current !== JSON.stringify(quill.getContents().ops);
+    // return false;
+  };
 
   const saveDocument = async (_) => {
+    console.log("Attempting to save...");
+
+    if (!contentsHaveChanged()) setSaved(true);
     if (!quill || !contentsHaveChanged()) return;
 
-    const data = quill?.getContents().ops;
+    const data = quill.getContents().ops;
 
     await updateDoc(docRef.current, {
       content: data,
     });
 
-    lastSavedContent.current = quill.getText();
+    lastSavedContent.current = JSON.stringify(data);
     setSaved(true);
 
     console.log("Successfully saved document.");
@@ -99,7 +107,7 @@ export default function Editor() {
           const data = docSnap.data();
 
           quill.setContents(new Delta(data.content));
-          lastSavedContent.current = quill.getText();
+          lastSavedContent.current = JSON.stringify(quill.getContents().ops);
           quill.enable();
 
           setDocTitle(data.title);
@@ -132,13 +140,13 @@ export default function Editor() {
 
       const editorChangeHandler = (type, ...args) => {
         const source = args[2];
-        if (source !== "user") return;
+        // if (source !== "user") return;
 
         if (type == "selection-change" && !args[0]) return;
-
-        handleEdits();
-
-        if (type === "text-change") socket.emit("send-changes", args[0]);
+        else if (type === "text-change") {
+          handleEdits(type, source);
+          socket.emit("send-changes", args[0]);
+        }
       };
 
       quill.on("editor-change", editorChangeHandler);

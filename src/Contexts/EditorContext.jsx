@@ -60,12 +60,13 @@ export function EditorProvider({ children }) {
     quill.format(property, newValue);
   };
 
-  const handleEdits = (_) => {
+  const handleEdits = (type, source) => {
     const f = quill.getFormat();
 
     dispatchFormat({ type: "SETALL", formats: f });
 
-    setQuillContent(quill.getText());
+    if (source === "user" && type === "text-change")
+      setQuillContent(JSON.stringify(quill.getContents().ops));
   };
 
   useEffect((_) => {
@@ -80,8 +81,6 @@ export function EditorProvider({ children }) {
 
     q.disable();
     q.setText("Loading document...");
-
-    const editable = editor.querySelector(".ql-editor");
 
     setQuill(q);
     setLoading(false);
