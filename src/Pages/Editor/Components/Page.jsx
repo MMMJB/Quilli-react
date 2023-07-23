@@ -130,6 +130,7 @@ export default function EditorPage() {
     <div className="mt-3 inline-block">
       <div
         id="PAGE-WRAPPER"
+        spellCheck="false"
         onClick={(_) => quill?.focus()}
         ref={wrapperRef}
         className="mb-3 h-[11in] w-[8.5in] cursor-text rounded-[4px] p-[1in] shadow-default"

@@ -3,7 +3,8 @@
   - [ ] Without range
 - [ ] Finish profile settings
   - [ ] Profile picture
-  - [ ] Name
+  - [x] Name
+    - [ ] Update name
   - [ ] Email confirmation
 - [ ] Finish document settings
   - [x] Title
@@ -19,7 +20,7 @@
     - [x] Search fonts
   - [ ] Image
   - [ ] Background image
-- [ ] Properly sync all formats with firebase
+- [x] Properly sync all formats with firebase
 - [ ] Finish tools
   - [ ] Spellcheck
   - [ ] Dictionary / synonyms
@@ -34,3 +35,4 @@
 - [ ] Add material icons to spritesheet
 - [ ] Fix new document history bug
 - [x] Fix Quill focus bug
+- [ ] Add more fonts

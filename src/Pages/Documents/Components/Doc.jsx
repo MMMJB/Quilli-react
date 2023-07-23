@@ -98,7 +98,7 @@ export default function Doc({ onClick, data }) {
             <div
               className={`${
                 settingsMenuOpen ? "" : "w-0"
-              } absolute right-0 top-0 z-50 flex flex-col items-end`}
+              } absolute right-0 top-0 z-40 flex flex-col items-end`}
             >
               <button
                 onClick={(_) => setSettingsMenuOpen((p) => !p)}

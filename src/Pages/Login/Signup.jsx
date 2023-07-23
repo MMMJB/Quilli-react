@@ -12,13 +12,12 @@ export default function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  // const firstNameRef = useRef();
-  // const lastNameRef = useRef();
+  const nameRef = useRef();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signup } = useAuth();
+  const { signup, changeDisplayName } = useAuth();
 
   const navigate = useNavigate();
 
@@ -33,10 +32,10 @@ export default function Signup() {
       setError("");
       setLoading(true);
 
-      await signup(emailRef.current.value, passwordRef.current.value);
-      await changeDisplayName(
-        firstNameRef.current.value,
-        lastNameRef.current.value,
+      await signup(emailRef.current.value, passwordRef.current.value).then(
+        (userCredential) => {
+          changeDisplayName(nameRef.current.value, userCredential.user);
+        },
       );
 
       navigate("/documents");
@@ -62,9 +61,16 @@ export default function Signup() {
         <div>
           <form
             onSubmit={accountSubmit}
-            className="flex w-96 flex-col items-center gap-8 rounded-lg border-[1px] border-gray-border bg-white/50 px-12 py-12"
+            className="flex w-96 flex-col items-center gap-8 rounded-lg bg-white/50 px-12 py-12 shadow-lg"
           >
             <h2 className="mb-4 font-sans text-2xl text-editor">Sign Up</h2>
+            <input
+              className={inputStyles}
+              type="text"
+              ref={nameRef}
+              placeholder="Name"
+              required
+            />
             <input
               className={inputStyles}
               type="email"
@@ -72,8 +78,6 @@ export default function Signup() {
               placeholder="Email"
               required
             />
-            {/* <input className={inputStyles} type="text" ref={firstNameRef} placeholder="First Name" required />
-                        <input className={inputStyles} type="text" ref={lastNameRef} placeholder="Last Name" required /> */}
             <input
               className={inputStyles}
               type="password"
@@ -93,12 +97,12 @@ export default function Signup() {
               className="ml-auto mt-4 rounded-md bg-brand px-6 py-2 font-sans text-sm text-white disabled:bg-brand/50"
               type="submit"
             >
-              Next
+              Sign Up
             </button>
           </form>
         </div>
         <span className="mt-4 font-sans text-sm text-editor">
-          Already have an account? Sign in{" "}
+          Already have an account? Log in{" "}
           <Link className="underline" to="/login">
             here
           </Link>

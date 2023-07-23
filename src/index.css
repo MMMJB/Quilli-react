@@ -706,6 +706,10 @@ video {
   z-index: 50;
 }
 
+.z-40{
+  z-index: 40;
+}
+
 .float-right{
   float: right;
 }
@@ -991,6 +995,14 @@ video {
   width: 100vw;
 }
 
+.w-\[500px\]{
+  width: 500px;
+}
+
+.w-\[400px\]{
+  width: 400px;
+}
+
 .min-w-\[220px\]{
   min-width: 220px;
 }
@@ -1029,6 +1041,10 @@ video {
 
 .max-w-xl{
   max-width: 36rem;
+}
+
+.max-w-\[100px\]{
+  max-width: 100px;
 }
 
 .flex-grow{
@@ -1619,8 +1635,8 @@ video {
   line-height: 1px;
 }
 
-.text-9xl{
-  font-size: 8rem;
+.text-5xl{
+  font-size: 3rem;
   line-height: 1;
 }
 
@@ -1687,21 +1703,6 @@ video {
 .text-xs\/\[14px\]{
   font-size: 0.75rem;
   line-height: 14px;
-}
-
-.text-7xl{
-  font-size: 4.5rem;
-  line-height: 1;
-}
-
-.text-6xl{
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
-.text-5xl{
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .font-light{

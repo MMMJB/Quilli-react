@@ -54,7 +54,7 @@ export default function Login() {
         <div>
           <form
             onSubmit={accountSubmit}
-            className="flex w-96 flex-col items-center gap-8 rounded-lg border-[1px] border-gray-border bg-white/50 px-12 py-12"
+            className="flex w-96 flex-col items-center gap-8 rounded-lg bg-white/50 px-12 py-12 shadow-lg"
           >
             <h2 className="mb-4 font-sans text-2xl text-editor">Log In</h2>
             <input

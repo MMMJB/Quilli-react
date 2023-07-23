@@ -102,8 +102,10 @@ export default function User() {
             <div className="relative z-10 flex w-full rounded-xl bg-white bg-[url('/images/corner_waves.svg')] bg-cover bg-right-bottom font-sans shadow-secondary">
               <AccountProfilePicture />
               <div className="my-auto flex flex-col">
-                <span className="text-base text-white">Michael Beck</span>
-                <span className="text-xs text-white/50">
+                <span className="text-base text-white">
+                  {currentUser.displayName || "Anon"}
+                </span>
+                <span className="max-w-[100px] overflow-hidden text-ellipsis text-xs text-white/50">
                   {currentUser.email}
                 </span>
               </div>

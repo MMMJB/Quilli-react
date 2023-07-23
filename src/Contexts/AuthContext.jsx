@@ -8,6 +8,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   updatePassword,
+  updateProfile,
 } from "firebase/auth";
 
 const auth = getAuth(app);
@@ -41,6 +42,12 @@ export function AuthProvider({ children }) {
     return updatePassword(currentUser, password);
   };
 
+  const changeDisplayName = (name, credential) => {
+    return updateProfile(credential || currentUser, {
+      displayName: name,
+    });
+  };
+
   useEffect((_) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -57,6 +64,7 @@ export function AuthProvider({ children }) {
     signup,
     resetPassword,
     changePassword,
+    changeDisplayName,
   };
 
   return (
