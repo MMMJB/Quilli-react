@@ -51,7 +51,6 @@ export default function Doc({ onClick, data }) {
     const q = new Quill(preview);
     q.disable();
     q.setContents(content || "Failed to load document preview.");
-    q.formatText(0, q.getText().length, "word", false);
   });
 
   const docOptions = [

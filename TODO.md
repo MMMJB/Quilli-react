@@ -3,8 +3,9 @@
   - [ ] Without range
 - [ ] Finish profile settings
   - [ ] Profile picture
+    - [ ] Default profile picture
   - [x] Name
-    - [ ] Update name
+    - [x] Update name
   - [ ] Email confirmation
 - [ ] Finish document settings
   - [x] Title

@@ -73,7 +73,9 @@ export default function User() {
         passwordRef.current.value = "";
         passwordConfirmRef.current.value = "";
       } catch {
-        setError("Could not update password.");
+        setError(
+          "Could not update password. Try logging out and logging back in.",
+        );
       }
     }
 
@@ -85,7 +87,7 @@ export default function User() {
 
         nameRef.current.value = "";
       } catch {
-        setError("Could not update name.");
+        setError("Could not update name. Try logging out and logging back in.");
       }
     }
 
