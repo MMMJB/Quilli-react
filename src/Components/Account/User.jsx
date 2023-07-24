@@ -12,12 +12,13 @@ const inputStyles =
 export default function User() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const nameRef = useRef();
 
   const [error, setError] = useState("");
   const [updatingProfile, setUpdatingProfile] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { currentUser, logout, changePassword } = useAuth();
+  const { currentUser, logout, changePassword, changeDisplayName } = useAuth();
 
   const navigate = useNavigate();
 
@@ -71,20 +72,25 @@ export default function User() {
 
         passwordRef.current.value = "";
         passwordConfirmRef.current.value = "";
-
-        setUpdatingProfile(false);
-      } catch (err) {
-        const e = err.message;
-        const msg = e.substring(e.indexOf(":") + 2, e.indexOf("("));
-        const type = e
-          .substring(e.indexOf("/") + 1, e.lastIndexOf(")"))
-          .replaceAll("-", " ");
-
-        setError(`${msg} - ${type}`);
+      } catch {
+        setError("Could not update password.");
       }
-
-      setLoading(false);
     }
+
+    if (nameRef.current.value) {
+      try {
+        setLoading(true);
+
+        await changeDisplayName(nameRef.current.value);
+
+        nameRef.current.value = "";
+      } catch {
+        setError("Could not update name.");
+      }
+    }
+
+    setLoading(false);
+    setUpdatingProfile(false);
   };
 
   useEffect(
@@ -128,56 +134,51 @@ export default function User() {
             >
               Sign Out
             </button>
-            {error && (
-              <div className="mt-4 font-roboto text-sm text-red-500">
-                {error}
-              </div>
-            )}
           </>
         ) : (
-          <>
-            <form
-              onSubmit={updateAccount}
-              className="flex flex-col items-center gap-8"
-            >
-              <input
-                className={inputStyles}
-                type="password"
-                ref={passwordRef}
-                placeholder="New Password"
-                required
-              />
-              <input
-                className={inputStyles}
-                type="password"
-                ref={passwordConfirmRef}
-                placeholder="Confirm Password"
-                required
-              />
-              <div className="mt-4 flex items-center gap-8">
-                <button
-                  onClick={(_) => setUpdatingProfile(false)}
-                  className="font-sans text-sm text-brand-dark"
-                >
-                  Cancel
-                </button>
-                <button
-                  disabled={loading}
-                  className="rounded-md bg-brand px-6 py-2 font-sans text-sm text-white disabled:bg-brand/50"
-                  type="submit"
-                >
-                  Update
-                </button>
-              </div>
-            </form>
-            {error && (
-              <div className="mt-4 font-roboto text-sm text-red-500">
-                {error}
-              </div>
-            )}
-          </>
+          <form
+            onSubmit={updateAccount}
+            className="flex flex-col items-center gap-8 bg-white p-8"
+          >
+            <input
+              className={inputStyles}
+              type="text"
+              ref={nameRef}
+              placeholder="New Name"
+            />
+            <input
+              className={inputStyles}
+              type="password"
+              ref={passwordRef}
+              placeholder="New Password"
+            />
+            <input
+              className={inputStyles}
+              type="password"
+              ref={passwordConfirmRef}
+              placeholder="Confirm Password"
+            />
+            <div className="mt-4 flex items-center gap-8">
+              <button
+                onClick={(_) => setUpdatingProfile(false)}
+                className="font-sans text-sm text-brand-dark"
+              >
+                Cancel
+              </button>
+              <button
+                disabled={loading}
+                className="rounded-md bg-brand px-6 py-2 font-sans text-sm text-white disabled:bg-brand/50"
+                type="submit"
+              >
+                Update
+              </button>
+            </div>
+          </form>
         )}
       </div>
+      {error && (
+        <div className="mt-4 font-roboto text-sm text-red-500">{error}</div>
+      )}
     </>
   );
 }
