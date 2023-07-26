@@ -24,7 +24,6 @@ export default function Editor() {
   const [socket, setSocket] = useState();
   const [error, setError] = useState();
   const [saved, setSaved] = useState(true);
-  const [loading, setLoading] = useState(true);
 
   const { currentUser } = useAuth();
   const {
@@ -36,6 +35,7 @@ export default function Editor() {
     setModalOpen,
     modalContents,
     setDocTitle,
+    setContentLoading,
   } = useEditor();
 
   const { id: documentId } = useParams();
@@ -111,7 +111,7 @@ export default function Editor() {
 
           quill.enable();
 
-          setLoading(false);
+          setContentLoading(false);
           console.log(`Successfully loaded document ${documentId}.`);
         } else setError(`Could not find document ${documentId}.`);
       };

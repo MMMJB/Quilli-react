@@ -35,6 +35,7 @@ export function EditorProvider({ children }) {
   const [quillContent, setQuillContent] = useState("");
   const [editor, setEditor] = useState();
   const [loading, setLoading] = useState(true);
+  const [contentLoading, setContentLoading] = useState(true);
   const [pageColor, setPageColor] = useState("#FFFFFD");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContents, setModalContents] = useState("");
@@ -95,6 +96,8 @@ export function EditorProvider({ children }) {
   const value = {
     quill,
     quillContent,
+    contentLoading,
+    setContentLoading,
     editor,
     handleEdits,
     format,

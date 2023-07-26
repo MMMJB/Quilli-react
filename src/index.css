@@ -622,8 +622,8 @@ video {
     z-index: 999;
   } */
 
-.static{
-  position: static;
+.pointer-events-none{
+  pointer-events: none;
 }
 
 .fixed{
@@ -652,6 +652,10 @@ video {
 
 .bottom-6{
   bottom: 1.5rem;
+}
+
+.left-0{
+  left: 0px;
 }
 
 .left-1\/2{
@@ -1421,6 +1425,11 @@ video {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-red-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
+
 .bg-salmon{
   --tw-bg-opacity: 1;
   background-color: rgb(254 236 226 / var(--tw-bg-opacity));
@@ -1450,6 +1459,10 @@ video {
 
 .bg-white\/75{
   background-color: rgb(255 255 255 / 0.75);
+}
+
+.bg-red-500\/50{
+  background-color: rgb(239 68 68 / 0.5);
 }
 
 .bg-\[url\(\'\/images\/corner_waves\.svg\'\)\]{
