@@ -8,6 +8,7 @@ const initialFormats = {
   underline: false,
   align: false,
   font: "Helvetica",
+  size: "12px",
 };
 
 const reducer = (state, action) => {
@@ -60,18 +61,24 @@ export function EditorProvider({ children }) {
     quill.format(property, newValue, source || "api");
   };
 
-  const handleEdits = (_) => {
-    const f = quill.getFormat();
+  const updateFormat = (_) => {
+    console.log(quill.getFormat());
+    dispatchFormat({ type: "SETALL", formats: quill.getFormat() });
+  };
 
-    dispatchFormat({ type: "SETALL", formats: f });
+  const handleEdits = (_) => {
+    updateFormat();
 
     setQuillContent(JSON.stringify(quill.getContents().ops));
   };
 
   useEffect((_) => {
     const editor = document.createElement("div");
+
     editor.style.setProperty("font-size", "12px");
     editor.style.setProperty("font-family", "var(--helvetica)");
+    editor.style.setProperty("text-wrap", "wrap");
+
     setEditor(editor);
 
     const q = new Quill(editor, {
@@ -92,6 +99,7 @@ export function EditorProvider({ children }) {
     handleEdits,
     format,
     changeFormat,
+    updateFormat,
     pageColor,
     setPageColor,
     modalOpen,

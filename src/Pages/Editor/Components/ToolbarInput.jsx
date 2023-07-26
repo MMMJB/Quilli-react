@@ -14,22 +14,16 @@ export default function EditorToolbarInput({ data }) {
     else if (size + amount < data.min) return setSize(data.min);
 
     setSize((p) => p + amount);
+
+    changeFormat(data.targetFormat, `${size}px`, "user");
   };
-
-  useEffect(
-    (_) => {
-      if (!quill) return;
-
-      changeFormat(data.targetFormat, `${size}px`, "user");
-    },
-    [quill, size],
-  );
 
   useEffect(
     (_) => {
       if (!quill || !format) return;
 
-      if (!format[data.targetFormat]) setSize(12);
+      if (!format[data.targetFormat]) setSize(data.default);
+      else setSize(parseInt(format[data.targetFormat]));
     },
     [quill, format],
   );

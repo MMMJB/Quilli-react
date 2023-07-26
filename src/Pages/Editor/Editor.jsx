@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 import { useParams } from "react-router-dom";
 
@@ -23,12 +24,14 @@ export default function Editor() {
   const [socket, setSocket] = useState();
   const [error, setError] = useState();
   const [saved, setSaved] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const { currentUser } = useAuth();
   const {
     quill,
     quillContent,
     handleEdits,
+    updateFormat,
     modalOpen,
     setModalOpen,
     modalContents,
@@ -40,11 +43,7 @@ export default function Editor() {
   const Delta = Quill.import("delta");
 
   const contentsHaveChanged = (_) => {
-    // console.log(lastSavedContent.current);
-    // console.log(JSON.stringify(quill.getContents().ops));
-
     return lastSavedContent.current !== JSON.stringify(quill.getContents().ops);
-    // return false;
   };
 
   const saveDocument = async (_) => {
@@ -108,10 +107,11 @@ export default function Editor() {
 
           quill.setContents(new Delta(data.content));
           lastSavedContent.current = JSON.stringify(quill.getContents().ops);
-          quill.enable();
-
           setDocTitle(data.title);
 
+          quill.enable();
+
+          setLoading(false);
           console.log(`Successfully loaded document ${documentId}.`);
         } else setError(`Could not find document ${documentId}.`);
       };
@@ -140,11 +140,11 @@ export default function Editor() {
 
       const editorChangeHandler = (type, ...args) => {
         const source = args[2];
-        // if (source !== "user") return;
 
-        if (type == "selection-change" && !args[0]) return;
+        if (type == "selection-change" && args[0]) updateFormat();
         else if (type === "text-change") {
           handleEdits();
+
           if (source === "user") socket.emit("send-changes", args[0]);
         }
       };
