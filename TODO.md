@@ -37,3 +37,4 @@
 - [ ] Fix new document history bug
 - [x] Fix Quill focus bug
 - [ ] Add more fonts
+- [ ] Don't hide loader until document is fully loaded

@@ -57,13 +57,13 @@ export function EditorProvider({ children }) {
     })),
   );
 
-  const changeFormat = (property, newValue, source) => {
-    quill.format(property, newValue, source || "api");
+  const updateFormat = (_) => {
+    dispatchFormat({ type: "SETALL", formats: quill.getFormat() });
   };
 
-  const updateFormat = (_) => {
-    console.log(quill.getFormat());
-    dispatchFormat({ type: "SETALL", formats: quill.getFormat() });
+  const changeFormat = (property, newValue, source) => {
+    quill.format(property, newValue, source || "api");
+    updateFormat();
   };
 
   const handleEdits = (_) => {
