@@ -38,7 +38,7 @@ export default function EditorHeader({ saved }) {
   return (
     <div
       id="HEADER"
-      className="flex w-full items-center gap-6 border-[1px] border-b-gray-border bg-white px-6 py-3"
+      className="flex w-full items-center gap-6 border-[1px] border-transparent border-b-gray-border bg-white px-6 py-3"
     >
       <img
         className="cursor-pointer"

@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <>
       <main className="grid w-full max-w-[1500px] grid-cols-2">
-        <div className="flex flex-col justify-center pl-28 text-home">
+        <div className="flex min-w-[700px] flex-col justify-center pl-28 text-home">
           <h1 className="tracking-tight">
             Write incredible{" "}
             <span className="decorated font-script text-brand">
