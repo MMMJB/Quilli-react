@@ -87,11 +87,24 @@
     background-color: theme("accentColor.salmon-lgt");
   }
 
+  #POPOUT-WRAPPER {
+    filter: drop-shadow(0px 1px 2px rgba(60, 64, 67, 0.1));
+  }
+
+  #POPOUT {
+    mask: linear-gradient(black, black) no-repeat;
+    -webkit-mask: linear-gradient(black, black) no-repeat;
+    mask-size: 100%;
+    -webkit-mask-size: 100%;
+  }
+
   #POPOUT-COVER:not(.active):not(:hover)
     + #POPOUT-WRAPPER
     > #POPOUT:not(:hover):not(:has(*:focus-visible)) {
     translate: 100%;
     pointer-events: none;
+    mask-size: 0% !important;
+    -webkit-mask-size: 0% !important;
   }
 
   #POPOUT-COVER.active,
@@ -103,29 +116,6 @@
   #PREVIEW * {
     cursor: pointer;
   }
-
-  .word {
-    position: relative;
-  }
-
-  .word:hover {
-    border: 1px solid transparent;
-    margin: -1px;
-    outline: 1px solid theme("accentColor.brand-lgt");
-    border-radius: 2px;
-  }
-
-  /* .word:hover::before {
-    content: attr(data-syllables);
-    position: absolute;
-    bottom: 0.5em;
-    color: white;
-    background-color: black;
-    padding: 0.15em 0.25em;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: 999;
-  } */
 }
 
 @layer utilities {

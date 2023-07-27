@@ -578,11 +578,24 @@ video {
   background-color: #FEF3ED;
 }
 
+#POPOUT-WRAPPER {
+  filter: drop-shadow(0px 1px 2px rgba(60, 64, 67, 0.1));
+}
+
+#POPOUT {
+  mask: linear-gradient(black, black) no-repeat;
+  -webkit-mask: linear-gradient(black, black) no-repeat;
+  mask-size: 100%;
+  -webkit-mask-size: 100%;
+}
+
 #POPOUT-COVER:not(.active):not(:hover)
     + #POPOUT-WRAPPER
     > #POPOUT:not(:hover):not(:has(*:focus-visible)) {
   translate: 100%;
   pointer-events: none;
+  mask-size: 0% !important;
+  -webkit-mask-size: 0% !important;
 }
 
 #POPOUT-COVER.active,
@@ -598,29 +611,6 @@ video {
 #PREVIEW * {
   cursor: pointer;
 }
-
-.word {
-  position: relative;
-}
-
-.word:hover {
-  border: 1px solid transparent;
-  margin: -1px;
-  outline: 1px solid #43CEA2;
-  border-radius: 2px;
-}
-
-/* .word:hover::before {
-    content: attr(data-syllables);
-    position: absolute;
-    bottom: 0.5em;
-    color: white;
-    background-color: black;
-    padding: 0.15em 0.25em;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: 999;
-  } */
 
 .pointer-events-none{
   pointer-events: none;
@@ -652,10 +642,6 @@ video {
 
 .bottom-6{
   bottom: 1.5rem;
-}
-
-.left-0{
-  left: 0px;
 }
 
 .left-1\/2{
@@ -716,11 +702,6 @@ video {
 
 .float-right{
   float: right;
-}
-
-.-mx-2{
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
 }
 
 .mx-8{
@@ -1347,10 +1328,6 @@ video {
   border-bottom-width: 1px;
 }
 
-.border-r-\[1px\]{
-  border-right-width: 1px;
-}
-
 .border-t-\[1px\]{
   border-top-width: 1px;
 }
@@ -1379,11 +1356,6 @@ video {
 .border-b-gray-border{
   --tw-border-opacity: 1;
   border-bottom-color: rgb(218 220 224 / var(--tw-border-opacity));
-}
-
-.border-r-gray-border{
-  --tw-border-opacity: 1;
-  border-right-color: rgb(218 220 224 / var(--tw-border-opacity));
 }
 
 .border-t-gray-border{
@@ -1425,11 +1397,6 @@ video {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
-.bg-red-500{
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
-
 .bg-salmon{
   --tw-bg-opacity: 1;
   background-color: rgb(254 236 226 / var(--tw-bg-opacity));
@@ -1459,10 +1426,6 @@ video {
 
 .bg-white\/75{
   background-color: rgb(255 255 255 / 0.75);
-}
-
-.bg-red-500\/50{
-  background-color: rgb(239 68 68 / 0.5);
 }
 
 .bg-\[url\(\'\/images\/corner_waves\.svg\'\)\]{
@@ -1842,6 +1805,10 @@ video {
 
 .outline-1{
   outline-width: 1px;
+}
+
+.outline-brand-lgt{
+  outline-color: #43CEA2;
 }
 
 .outline-gray-border{

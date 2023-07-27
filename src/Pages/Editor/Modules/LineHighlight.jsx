@@ -9,27 +9,25 @@ export default function LineHighlight({ parentEl }) {
   const { editor } = useEditor();
 
   useEffect((_) => {
-    console.log("It's alive!!!");
-
     const startingBox = parentEl.getBoundingClientRect();
     const trueParentBox = editor.getBoundingClientRect();
 
     setPos([startingBox.x - trueParentBox.x, startingBox.y - trueParentBox.y]);
 
-    const observer = new ResizeObserver((entries) => {
+    const resizeObserver = new ResizeObserver((entries) => {
       const newBox = entries[0].contentRect;
 
       setSize([newBox.width, newBox.height]);
     });
 
-    observer.observe(parentEl);
+    resizeObserver.observe(parentEl);
 
-    return (_) => observer.disconnect();
+    return (_) => resizeObserver.disconnect();
   }, []);
 
   return (
     <span
-      className={`absolute block bg-red-500/50`}
+      className={`absolute block rounded-md outline outline-1 outline-brand-lgt`}
       style={{
         left: `calc(${pos[0]}px + 1in)`,
         top: `calc(${pos[1]}px + 1in)`,

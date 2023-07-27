@@ -1,3 +1,5 @@
+import "react-tooltip/dist/react-tooltip.css";
+
 import React from "react";
 
 import { AuthProvider } from "./Contexts/AuthContext";

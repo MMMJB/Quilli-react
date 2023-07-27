@@ -29,6 +29,10 @@
   - [ ] Syllables
   - [ ] Rhyme scheme
   - [ ] Meter detecter
+  - [ ] Annotations / highlights
+    - [x] Line highlights
+    - [ ] Word highlights
+    - [ ] Context menu
 - [x] Fix socketio improper style syncing
 - [x] Save on style update
 - [ ] Add new page on text overflow

@@ -4,7 +4,11 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Icon from "../../../Components/Icon";
 
-export default function EditorToolbarButton({ data }) {
+export default function EditorToolbarButton({
+  data,
+  "data-tooltip-id": tooltipId,
+  "data-tooltip-content": tooltipContent,
+}) {
   const [highlighted, setHighlighted] = useState(false);
 
   const { quill, format, changeFormat } = useEditor();
@@ -41,6 +45,9 @@ export default function EditorToolbarButton({ data }) {
 
   return (
     <li
+      data-tooltip-id={tooltipId}
+      data-tooltip-content={tooltipContent}
+      data-tooltip-place="top"
       onClick={clickHandler}
       className={`${
         highlighted ? activeStyles : inactiveStyles
