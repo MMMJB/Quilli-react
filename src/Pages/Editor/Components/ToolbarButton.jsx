@@ -48,6 +48,7 @@ export default function EditorToolbarButton({
       data-tooltip-id={tooltipId}
       data-tooltip-content={tooltipContent}
       data-tooltip-place="top"
+      data-tooltip-delay-show={1000}
       onClick={clickHandler}
       className={`${
         highlighted ? activeStyles : inactiveStyles

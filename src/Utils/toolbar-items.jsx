@@ -18,24 +18,22 @@ export default [
             key="bold"
             data-tooltip-id="bold"
             data-tooltip-content="Bold"
-            data-tooltip-place="top"
           />
         ),
       },
       {
-        tooltip: "Italicize Text",
+        tooltip: "Italic",
         elm: (
           <EditorToolbarButton
             data={{ toggleable: true, icon: 5, targetFormat: "italic" }}
             key="italic"
-            data-tooltip-id="italicizetext"
-            data-tooltip-content="Italicize Text"
-            data-tooltip-place="top"
+            data-tooltip-id="italic"
+            data-tooltip-content="Italic"
           />
         ),
       },
       {
-        tooltip: "Underline Text",
+        tooltip: "Underline",
         elm: (
           <EditorToolbarButton
             data={{
@@ -45,9 +43,8 @@ export default [
               targetFormat: "underline",
             }}
             key="underline"
-            data-tooltip-id="underlinetext"
-            data-tooltip-content="Underline Text"
-            data-tooltip-place="top"
+            data-tooltip-id="underline"
+            data-tooltip-content="Underline"
           />
         ),
       },
@@ -65,12 +62,11 @@ export default [
             key="size"
             data-tooltip-id="fontsize"
             data-tooltip-content="Font Size"
-            data-tooltip-place="top"
           />
         ),
       },
       {
-        tooltip: "Font Family",
+        tooltip: "Font",
         elm: (
           <EditorToolbarModal
             data={{
@@ -79,9 +75,8 @@ export default [
               children: <FontModal />,
             }}
             key="font"
-            data-tooltip-id="fontfamily"
-            data-tooltip-content="Font Family"
-            data-tooltip-place="top"
+            data-tooltip-id="font"
+            data-tooltip-content="Font"
           />
         ),
       },
@@ -91,7 +86,7 @@ export default [
     icon: 7,
     items: [
       {
-        tooltip: "Align Text Left",
+        tooltip: "Align Left",
         elm: (
           <EditorToolbarButton
             data={{
@@ -101,14 +96,13 @@ export default [
               formatValue: false,
             }}
             key="alignleft"
-            data-tooltip-id="aligntextleft"
-            data-tooltip-content="Align Text Left"
-            data-tooltip-place="top"
+            data-tooltip-id="alignleft"
+            data-tooltip-content="Align Left"
           />
         ),
       },
       {
-        tooltip: "Align Text Center",
+        tooltip: "Align Center",
         elm: (
           <EditorToolbarButton
             data={{
@@ -118,14 +112,13 @@ export default [
               formatValue: "center",
             }}
             key="aligncenter"
-            data-tooltip-id="aligntextcenter"
-            data-tooltip-content="Align Text Center"
-            data-tooltip-place="top"
+            data-tooltip-id="aligncenter"
+            data-tooltip-content="Align Center"
           />
         ),
       },
       {
-        tooltip: "Align Text Right",
+        tooltip: "Align Right",
         elm: (
           <EditorToolbarButton
             data={{
@@ -135,14 +128,13 @@ export default [
               formatValue: "right",
             }}
             key="alignright"
-            data-tooltip-id="aligntextright"
-            data-tooltip-content="Align Text Right"
-            data-tooltip-place="top"
+            data-tooltip-id="alignright"
+            data-tooltip-content="Align Right"
           />
         ),
       },
       {
-        tooltip: "Justify Text",
+        tooltip: "Justify",
         elm: (
           <EditorToolbarButton
             data={{
@@ -152,9 +144,8 @@ export default [
               formatValue: "justify",
             }}
             key="alignjustify"
-            data-tooltip-id="justifytext"
-            data-tooltip-content="Justify Text"
-            data-tooltip-place="top"
+            data-tooltip-id="justify"
+            data-tooltip-content="Justify"
           />
         ),
       },
@@ -166,7 +157,6 @@ export default [
             key="height"
             data-tooltip-id="lineheight"
             data-tooltip-content="Line Height"
-            data-tooltip-place="top"
           />
         ),
       },
@@ -181,14 +171,13 @@ export default [
           <EditorToolbarColorInput
             data={{ targetFormat: "color", default: "#000000", icon: 1 }}
             key="color"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="textcolor"
+            data-tooltip-content="Text Color"
           />
         ),
       },
       {
-        tooltip: "Highlight Text",
+        tooltip: "Highlight",
         elm: (
           <EditorToolbarColorInput
             data={{
@@ -198,45 +187,41 @@ export default [
               icon: 2,
             }}
             key="highlight"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="highlight"
+            data-tooltip-content="Highlight"
           />
         ),
       },
       {
-        tooltip: "Change Background Color",
+        tooltip: "Page Color",
         elm: (
           <PageColor
             data={{ default: "#FFFFFD", icon: 15 }}
             key="pagecolor"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="pagecolor"
+            data-tooltip-content="Page Color"
           />
         ),
       },
       {
-        tooltip: "Change Background Image",
+        tooltip: "Background Image",
         elm: (
           <EditorToolbarImageInput
             data={{ icon: 16 }}
             key="backgroundimage"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="backgroundimage"
+            data-tooltip-content="Background Image"
           />
         ),
       },
       {
-        tooltip: "Place Image",
+        tooltip: "Image",
         elm: (
           <EditorToolbarImageInput
             data={{ icon: 18 }}
             key="image"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="image"
+            data-tooltip-content="Image"
           />
         ),
       },
@@ -246,62 +231,57 @@ export default [
     icon: 22,
     items: [
       {
-        tooltip: "Toggle Rhyme Scheme",
+        tooltip: "Rhyme Scheme",
         elm: (
           <EditorToolbarButton
             data={{ icon: 0, iconSize: 14 }}
             key="scheme"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="rhymescheme"
+            data-tooltip-content="Rhyme Scheme"
           />
         ),
       },
       {
-        tooltip: "Open Rhymes",
+        tooltip: "Rhymes",
         elm: (
           <EditorToolbarButton
             data={{ icon: 12, iconSize: 14 }}
             key="rhymes"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="rhymes"
+            data-tooltip-content="Rhymes"
           />
         ),
       },
       {
-        tooltip: "Open Dictionary",
+        tooltip: "Dictionary",
         elm: (
           <EditorToolbarButton
             data={{ icon: 13, iconSize: 14 }}
             key="dictionary"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="dictionary"
+            data-tooltip-content="Dictionary"
           />
         ),
       },
       {
-        tooltip: "Toggle Word Count",
+        tooltip: "Word Count",
         elm: (
           <EditorToolbarButton
             data={{ icon: 19, iconSize: 14 }}
             key="count"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="wordcount"
+            data-tooltip-content="Word Count"
           />
         ),
       },
       {
-        tooltip: "Toggle Syllable View",
+        tooltip: "Syllable View",
         elm: (
           <EditorToolbarButton
             data={{ icon: 14, iconSize: 15 }}
             key="syllables"
-            data-tooltip-id=""
-            data-tooltip-content=""
-            data-tooltip-place="top"
+            data-tooltip-id="syllableview"
+            data-tooltip-content="Syllable View"
           />
         ),
       },

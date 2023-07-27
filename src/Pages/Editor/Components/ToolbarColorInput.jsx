@@ -4,7 +4,11 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Icon from "../../../Components/Icon";
 
-export default function EditorToolbarColorInput({ data }) {
+export default function EditorToolbarColorInput({
+  data,
+  "data-tooltip-id": tooltipId,
+  "data-tooltip-content": tooltipContent,
+}) {
   const [selectedColor, setSelectedColor] = useState(data.default);
   const [active, setActive] = useState(false);
 
@@ -41,6 +45,10 @@ export default function EditorToolbarColorInput({ data }) {
 
   return (
     <li
+      data-tooltip-id={tooltipId}
+      data-tooltip-content={tooltipContent}
+      data-tooltip-place="top"
+      data-tooltip-delay-show={1000}
       onClick={(_) => {
         if (data.toggleable) setActive((p) => !p);
       }}

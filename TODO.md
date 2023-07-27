@@ -36,7 +36,7 @@
 - [x] Fix socketio improper style syncing
 - [x] Save on style update
 - [ ] Add new page on text overflow
-- [ ] Add tooltips for all toolbar items
+- [x] Add tooltips for all toolbar items
 - [ ] Add material icons to spritesheet
 - [ ] Fix new document history bug
 - [x] Fix Quill focus bug

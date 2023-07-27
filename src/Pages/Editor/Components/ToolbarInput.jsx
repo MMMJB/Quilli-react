@@ -4,7 +4,11 @@ import { useEditor } from "../../../Contexts/EditorContext";
 
 import Icon from "../../../Components/Icon";
 
-export default function EditorToolbarInput({ data }) {
+export default function EditorToolbarInput({
+  data,
+  "data-tooltip-id": tooltipId,
+  "data-tooltip-content": tooltipContent,
+}) {
   const [value, setValue] = useState(data.default);
 
   const { quill, format, changeFormat } = useEditor();
@@ -33,7 +37,12 @@ export default function EditorToolbarInput({ data }) {
   );
 
   return (
-    <li>
+    <li
+      data-tooltip-id={tooltipId}
+      data-tooltip-content={tooltipContent}
+      data-tooltip-place="top"
+      data-tooltip-delay-show={1000}
+    >
       <div
         onClick={(_) => changeSize(data.stepSize)}
         className="flex cursor-pointer justify-center"

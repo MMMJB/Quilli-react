@@ -578,6 +578,13 @@ video {
   background-color: #FEF3ED;
 }
 
+#POPOUT-WRAPPER .react-tooltip {
+  font-size: 12px;
+  font-family: var(--roboto);
+  padding: 4px 12px;
+  border-radius: 50vw;
+}
+
 #POPOUT-WRAPPER {
   filter: drop-shadow(0px 1px 2px rgba(60, 64, 67, 0.1));
 }
@@ -1250,10 +1257,6 @@ video {
 
 .overflow-y-auto{
   overflow-y: auto;
-}
-
-.overflow-x-hidden{
-  overflow-x: hidden;
 }
 
 .text-ellipsis{
