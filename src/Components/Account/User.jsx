@@ -7,7 +7,7 @@ import UserMenuButton from "./UserMenuButton";
 import AccountProfilePicture from "./AccountProfilePicture";
 
 const inputStyles =
-  "max-w-[12rem] font-roboto text-editor-lgt text-base rounded-md px-6 py-3 border-gray-border border-[1px] focus-visible:outline-none focus-visible:border-brand focus-visible:border-2 focus-visible:placeholder:text-editor-lgt/50";
+  "max-w-[12rem] font-roboto text-editor-lgt text-sm rounded-md px-6 py-3 border-gray-border border-[1px] focus-visible:outline-none focus-visible:border-brand focus-visible:border-2 focus-visible:placeholder:text-editor-lgt/50";
 
 export default function User() {
   const passwordRef = useRef();
@@ -104,21 +104,21 @@ export default function User() {
 
   return (
     <>
-      <div className="w-64 overflow-hidden rounded-xl bg-gray-50 shadow-lg">
+      <div className="w-max overflow-hidden rounded-lg bg-white p-2 shadow-lg">
         {!updatingProfile ? (
           <>
-            <div className="relative z-10 flex w-full rounded-xl bg-white bg-[url('/images/corner_waves.svg')] bg-cover bg-right-bottom font-sans shadow-secondary">
+            <div className="relative z-10 flex w-full font-sans">
               <AccountProfilePicture />
-              <div className="my-auto flex flex-col">
-                <span className="text-base text-white">
+              <div className="my-auto mr-6 flex flex-col">
+                <span className="text-sm text-editor">
                   {currentUser.displayName || "Anon"}
                 </span>
-                <span className="max-w-[100px] overflow-hidden text-ellipsis text-xs text-white/50">
+                <span className="max-w-[100px] overflow-hidden text-ellipsis text-xs text-editor/50">
                   {currentUser.email}
                 </span>
               </div>
             </div>
-            <ul className="flex w-full flex-col rounded-b-xl bg-white font-roboto shadow-sm">
+            <ul className="flex w-full flex-col border-y-[1px] border-y-gray-border font-roboto">
               {menuButtons.map((btn, i) => {
                 return (
                   <UserMenuButton
@@ -130,12 +130,15 @@ export default function User() {
                 );
               })}
             </ul>
-            <button
+            <div
               onClick={handleLogout}
-              className="relative left-1/2 my-3 -translate-x-1/2 text-xs text-editor-lgt transition-colors hover:text-editor"
+              className="flex w-full cursor-pointer items-center gap-4 p-4 transition-colors"
             >
-              Sign Out
-            </button>
+              <button className="material-symbols-outlined text-lg/[1px] text-gray-icon">
+                logout
+              </button>
+              <button className="text-xs text-editor-lgt">Sign out</button>
+            </div>
           </>
         ) : (
           <form
@@ -160,7 +163,7 @@ export default function User() {
               ref={passwordConfirmRef}
               placeholder="Confirm Password"
             />
-            <div className="mt-4 flex items-center gap-8">
+            <div className="flex items-center gap-8">
               <button
                 onClick={(_) => setUpdatingProfile(false)}
                 className="font-sans text-sm text-brand-dark"

@@ -29,6 +29,7 @@
   - [ ] Syllables
   - [ ] Rhyme scheme
   - [ ] Meter detecter
+  - [ ] Word / line / character
   - [ ] Annotations / highlights
     - [x] Line highlights
     - [ ] Word highlights
