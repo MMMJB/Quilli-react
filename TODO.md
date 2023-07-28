@@ -2,8 +2,8 @@
   - [ ] With range
   - [ ] Without range
 - [ ] Finish profile settings
-  - [ ] Profile picture
-    - [ ] Default profile picture
+  - [x] Profile picture
+    - [x] Default profile picture
   - [x] Name
     - [x] Update name
   - [ ] Email confirmation

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import app from "../Utils/firebase-config";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -10,8 +12,11 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const auth = getAuth(app);
+const storage = getStorage(app);
+
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -48,6 +53,21 @@ export function AuthProvider({ children }) {
     });
   };
 
+  const changeProfilePicture = async (file) => {
+    const pfpRef = ref(
+      storage,
+      `users/${currentUser.uid}/pfp.${file.type.substring(6)}`,
+    );
+
+    await uploadBytes(pfpRef, file).then(async (snapshot) => {
+      const url = await getDownloadURL(snapshot.ref);
+
+      await updateProfile(currentUser, {
+        photoURL: url,
+      });
+    });
+  };
+
   useEffect((_) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -65,6 +85,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     changePassword,
     changeDisplayName,
+    changeProfilePicture,
   };
 
   return (
