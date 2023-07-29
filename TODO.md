@@ -14,6 +14,7 @@
   - [x] Delete
   - [ ] Last edited
     - [ ] Sort by last edited
+  - [ ] Create from template
 - [ ] Finish formatting options
   - [ ] Line height
   - [x] Font
@@ -43,3 +44,4 @@
 - [x] Fix Quill focus bug
 - [ ] Add more fonts
 - [ ] Don't hide loader until document is fully loaded
+- [x] Fix quick toolbar item hover bug
