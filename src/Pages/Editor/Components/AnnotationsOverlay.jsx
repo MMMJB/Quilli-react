@@ -2,44 +2,59 @@ import React, { useState, useEffect } from "react";
 
 import { useEditor } from "../../../Contexts/EditorContext";
 
-import LineHighlight from "../Modules/LineHighlight";
+import Highlight from "../Modules/Highlight";
 
 export default function EditorAnnotationsOverlay() {
-  const [lineHighlights, setLineHighlights] = useState([]);
+  const [hoveredEl, setHoveredEl] = useState();
+  const [highlights, setHighlights] = useState([]);
 
   const { quill, editor, contentLoading } = useEditor();
-
-  const updateLineHighlights = (_) => {
-    setLineHighlights(
-      Array.from([...editor.querySelectorAll("p")], (el, i) => {
-        return { parent: el, key: Math.random() }; // ! CHANGE THIS
-      }),
-    );
-  };
 
   useEffect(
     (_) => {
       if (!quill || contentLoading) return;
 
-      const mutationObserver = new MutationObserver((_) => {
-        updateLineHighlights();
-      });
+      const lineHoverHandler = (e) => {
+        const target = e.target;
 
-      mutationObserver.observe(editor.querySelector(".ql-editor"), {
-        childList: true,
-      });
+        if (
+          !editor.contains(target) ||
+          target.isSameNode(hoveredEl) ||
+          ["ql-clipboard", "ql-cursor"].some((v) =>
+            target.classList.contains(v),
+          )
+        )
+          return;
 
-      updateLineHighlights();
+        setHoveredEl(target);
+      };
 
-      return (_) => mutationObserver.disconnect();
+      window.addEventListener("mousemove", lineHoverHandler);
+
+      return (_) => window.removeEventListener("mousemove", lineHoverHandler);
     },
     [quill, contentLoading],
   );
 
+  useEffect(
+    (_) => {
+      if (!hoveredEl) return;
+
+      setHighlights([hoveredEl]);
+    },
+    [hoveredEl],
+  );
+
   return (
     <div className="pointer-events-none absolute h-full w-full">
-      {lineHighlights.map((h) => {
-        return <LineHighlight key={h.key} parentEl={h.parent} />;
+      {highlights.map((el, i) => {
+        const lineIndex = [...editor.querySelectorAll("p")].findIndex((line) =>
+          line.contains(el),
+        );
+
+        return (
+          <Highlight parentEl={el} lineIndex={lineIndex} key={lineIndex} />
+        );
       })}
     </div>
   );

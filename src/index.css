@@ -1025,6 +1025,10 @@ video {
   max-width: 570px;
 }
 
+.max-w-\[6\.5in\]{
+  max-width: 6.5in;
+}
+
 .max-w-full{
   max-width: 100%;
 }
@@ -1271,6 +1275,10 @@ video {
 
 .text-ellipsis{
   text-overflow: ellipsis;
+}
+
+.whitespace-normal{
+  white-space: normal;
 }
 
 .whitespace-nowrap{
@@ -1755,6 +1763,10 @@ video {
 
 .text-red-500\/75{
   color: rgb(239 68 68 / 0.75);
+}
+
+.text-transparent{
+  color: transparent;
 }
 
 .text-white{
